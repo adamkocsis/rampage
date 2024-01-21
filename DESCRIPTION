@@ -1,6 +1,6 @@
 Package: rampage 
 Type: Package
-Title: Flexibly Strechable Color Ramps
+Title: Flexibly Stretchable Color Ramps
 Version: 0.1
 Authors@R: c(
 	person(given="Adam T.", family="Kocsis", role=c("cre", "aut"),
