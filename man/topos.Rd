@@ -7,10 +7,10 @@
 \format{
 A \code{list} with 2 \code{data.frame}s:
 \describe{
-\item{\code{jakarta}}{: The "Jakarta" theme.}
-\item{\code{havanna2}}{: The "Havanna-2" theme.}
-\item{\code{tokio1}}{: The "tokio-1" theme.}
-\item{\code{zagreb}}{: The "zagreb" theme.}
+\item{\code{jakarta}}{: The "Jakarta" theme, color values by \emph{Arcanographia}. }
+\item{\code{havanna2}}{: The "Havanna-2" theme, color values by \emph{Arcanographia}.}
+\item{\code{tokio1}}{: The "Tokio-1" theme, color values by \emph{Arcanographia}.}
+\item{\code{zagreb}}{: The "Zagreb" theme, color values by \emph{Arcanographia}.}
 }
 }
 \usage{
