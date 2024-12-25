@@ -94,32 +94,29 @@
 <span><span class="co"># the histogram of the values</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">vals</span>, breaks<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">vals</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="do">## X11cairo </span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="do">##        2</span></span></code></pre></div>
 <p><img src="reference/figures/hist.png"></p>
 <p>Automatic ramping will use the range of values provided for the plotting function, for instance, the default plotting with the <code>fields</code> package:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dnychka/fieldsRPackage" class="external-link">fields</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/imagePlot.html" class="external-link">imagePlot</a></span><span class="op">(</span><span class="va">vals</span>, col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="reference/ramps.html">gradinv</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## X11cairo </span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="do">##        2</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="do">## png </span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="do">##   2</span></span></code></pre></div>
 <p><img src="reference/figures/fields_default.png"></p>
 <p>Assuming that the values represent changes from a previous state (or for other reasons), it might be important to highlight the <code>0</code> level, clearly separating increases (positive) from decreases (negative values), for instance with the yellow color in this example. This task can be solved by defining a color ramp:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  z<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>  color<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="reference/ramps.html">gradinv</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">df</span></span></code></pre></div>
 <p>That can be expanded to a full, calibrated color ramp with the <code>expand</code> function. The resultsing object can be used to control <code><a href="https://rdrr.io/pkg/fields/man/imagePlot.html" class="external-link">fields::imagePlot</a></code> via its <code>breaks</code> argument:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># calibrated color ramp</span></span>
 <span><span class="va">ramp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/expand.html">expand</a></span><span class="op">(</span><span class="va">df</span>, n<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># the actual plot</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/imagePlot.html" class="external-link">imagePlot</a></span><span class="op">(</span><span class="va">vals</span>, breaks<span class="op">=</span><span class="va">ramp</span><span class="op">$</span><span class="va">breaks</span>, col<span class="op">=</span><span class="va">ramp</span><span class="op">$</span><span class="va">col</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="do">## X11cairo </span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">##        2</span></span></code></pre></div>
+<p><img src="reference/figures/fields_ramped.png"></p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
