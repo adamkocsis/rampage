@@ -1,0 +1,131 @@
+---
+title: "2. Topographic maps"
+description: >
+  Making topographic maps.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{2. Topographic maps}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## 1. Topography matrices
+
+The built-in `volcano` topographic data.
+
+```{r}
+data(volcano)
+```
+
+Attach the package.
+
+
+### Create a color ramp
+
+```{r}
+library(rampage)
+```
+
+Specify tiepoints for the color ramp calibration.
+
+```{r}
+tiepoints <- data.frame(
+	z = c(0, 100, 120, 160,220), 
+	color = c("#46AF64", "#96C869", "#E1D791", "#CDB991", "#7D695A")
+)
+```
+
+Construct an actual color ramp from the tiepoints:
+
+```{r}
+# expand
+ramp <- expand(tiepoints, n=256) 
+str(ramp)
+```
+
+Visualize the color ramp.
+
+```{r, plot=TRUE}
+plot(ramp)
+```
+
+### Plotting with `image` 
+
+Use the color ramp to plot the data.
+
+```{r, fig.height=7, fig.width=7}
+image(volcano, breaks=ramp$breaks, col=ramp$col, axes=FALSE)
+```
+
+Use the `ramplegend` function to draw a legend:
+
+```{r, fig.height=7, fig.width=7}
+image(volcano, breaks=ramp$breaks, col=ramp$col, axes=FALSE)
+ramplegend("topright", ramp=ramp, cex=0.7, box=list(border=NA, col="#ffffff55"))
+```
+
+### Different shading
+
+```{r}
+tiepoints2 <- data.frame(
+	z = c(0, 100, 110, 130,200), 
+	color = c("#46AF64", "#96C869", "#E1D791", "#CDB991", "#7D695A")
+)
+ramp2 <- expand(tiepoints2, n=512) 
+```
+
+The same topography, same palette, with different tiepoints:
+
+```{r, fig.height=7, fig.width=7}
+image(volcano, breaks=ramp2$breaks, col=ramp2$col, axes=FALSE)
+ramplegend("topright", ramp=ramp2, cex=0.7, box=list(border=NA, col="#ffffff55"))
+```
+
+### Changes
+
+A hypothetical succession assuming a 5 meter increase:
+
+```{r, fig.height=12, fig.width=8}
+par(mfrow=c(3,2), mar=c(1,1,1,1))
+image(volcano-10, breaks=ramp$breaks, col=ramp$col, axes=FALSE, main="-10 m")
+image(volcano-5, breaks=ramp$breaks, col=ramp$col, axes=FALSE, main="-5 m")
+image(volcano, breaks=ramp$breaks, col=ramp$col, axes=FALSE, main="+0 m")
+image(volcano+5, breaks=ramp$breaks, col=ramp$col, axes=FALSE, main="+5 m")
+image(volcano+10, breaks=ramp$breaks, col=ramp$col, axes=FALSE, main="+10 m")
+image(volcano+15, breaks=ramp$breaks, col=ramp$col, axes=FALSE, main="+15 m")
+ramplegend("bottomright", ramp=ramp, cex=0.7, box=list(border=NA, col="#ffffff55"))
+```
+
+
+
+### With `imagePlot` 
+
+A similar effect can be reached using the `imagePlot` function from  `fields` extension package, which will display the legend for color ramp automatically.
+
+```{r, fig.height=7, fig.width=7}
+library(fields)
+
+# the function call
+imagePlot(volcano, breaks=ramp$breaks, col=ramp$col, axes=FALSE)
+```
+
+
+
+
+## 2. Georeferenced raster topography
+
+### Built-in objects for topographies
+
+### `terra`
+
+The `terra` extension. 
+
+

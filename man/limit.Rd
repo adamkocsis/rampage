@@ -7,7 +7,7 @@
 limit(x, y = NULL, min = NULL, max = NULL)
 }
 \arguments{
-\item{x}{object to limit.}
+\item{x}{object to limit, a \code{SpatRaster} object.}
 
 \item{y}{Range, numeric vector with two values, or data frame of positioned color values.}
 
@@ -15,6 +15,12 @@ limit(x, y = NULL, min = NULL, max = NULL)
 
 \item{max}{The maximum value to have in the raster.}
 }
+\value{
+A \code{SpatRaster} object.
+}
 \description{
 Limit range of values in a SpatRaster object
+}
+\examples{
+# an example for spatraster limitation
 }

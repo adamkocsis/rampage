@@ -1,0 +1,40 @@
+---
+title: "1. Installation"
+description: >
+  Alternatives to install the rampage R package. 
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{1. Installation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Alternative methods
+
+#### Development version 
+
+If you encounter technical problems with the package that are not described anywhere, you might want to take a look at the [development version](https://github.com/adamkocsis/rampage/tree/devel).
+
+If you wish to install the development version, I recommend a manual installation:  
+1. Clone the repository to your local hard drive.  
+2. Open a terminal and navigate to the directory where you cloned. The `rampage` directory should be visible from there.  
+3. Run this line in the terminal  
+
+```
+R CMD INSTALL rampage
+```
+
+<div class="alert alert-danger" role="warning">
+- *If you see an error suggesting that `R` is not found, you have to add it to your `PATH` environmental variable.*  
+- *If the R packages that `rampage` depend on are not installed, you have to install them manually, or you will get an error.*
+</div>
+
+ You can also try `devtools::install_github("adamkocsis/rampage")`
+

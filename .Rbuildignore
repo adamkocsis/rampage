@@ -7,3 +7,12 @@ matchtime.R
 README.Rmd
 README.md
 README.html
+_pkgdown.yml
+index.Rmd
+index.md
+index.html
+vignettes/installation.Rmd
+vignettes/topographies.Rmd
+man/figures/hist.png
+man/figures/fields_default.png
+man/figures/fields_ramped.png

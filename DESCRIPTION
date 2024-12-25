@@ -1,17 +1,18 @@
 Package: rampage 
 Type: Package
-Title: Flexibly Stretchable Color Ramps
-Version: 0.1
+Title: Calibrated Color Ramps
+Version: 0.2.0
 Authors@R: c(
 	person(given="Adam T.", family="Kocsis", role=c("cre", "aut"),
 		   email="adam.t.kocsis@gmail.com", comment=c(ORCID="0000-0002-9028-665X")),
 	person(given="Deutsche Forschungsgemeinschaft", role="fnd"),
 	person(given="FAU GeoZentrum Nordbayern", role="fnd"))
 Maintainer: Adam T. Kocsis <adam.t.kocsis@gmail.com>
-Description: Biased color ramps can be useful to emphasize patterns in weirdly distributed data. Tiepoints can be used to fix colors to specific values, and the resulting association can then be expanded into full color ramps. Such ramps can be used in a variety of cases when heatmap-type plotting is necessary, including the visualization of raster and polygon spatial data. 
+Description: Value-calibrated color ramps can be useful to emphasize patterns in complexly distributed data. Colors can be tied to specific values (tiepoints), and the association can then be expanded into full color ramps, that explicitly record the relationship between colors and the values they represent. Such ramps can be used in a variety of cases when heatmap-type plots is necessary, including the visualization of vector and raster spatial data, such as topographies.
 License: CC BY 4.0
-Date: 2024-01-21 
-BugReports: https://github.com/adamkocsis/paleospace/issues
+Date: 2024-12-22
+URL: https://adamtkocsis.com/rampage
+BugReports: https://github.com/adamkocsis/rampage/issues
 Encoding: UTF-8
 LazyData: true
 Depends:
@@ -19,9 +20,8 @@ Depends:
 Imports: 
 	grDevices
 NeedsCompilation: no
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.2
 Suggests:
     knitr,
     rmarkdown,
 	terra
-

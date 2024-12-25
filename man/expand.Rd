@@ -4,15 +4,21 @@
 \alias{expand}
 \title{Create color ramp palette from fixed, color-tiepoint objects}
 \usage{
-expand(x, n)
+expand(x, n, color = "color", z = "z", ...)
 }
 \arguments{
 \item{x}{A \code{data.frame} object with two columns: \code{color} for hexadecimal color values, \code{z} for their position.}
 
 \item{n}{Single integer number}
+
+\item{color}{A \code{chraracter} value, the column name of the colors in \code{x}, defaults to \code{"color"}.}
+
+\item{z}{A \code{chraracter} value, the column name of the values in \code{x}, defaults to \code{"z"}.}
+
+\item{...}{Arguments passed to the \code{colorRampPalette} function.}
 }
 \value{
-A \code{list}-class object, with three elements: \code{$col} hexadecimal color values, \code{$mid} z-values of midpoints (one for every color, \code{$breaks} separator borders between color values.
+A \code{list}-class object, with three elements: \code{$col} hexadecimal color values, \code{$mid}: z-values of midpoints (one for every color), and \code{$breaks}: separator borders between color values.
 }
 \description{
 Function to create ramp palettes from fixed color positions

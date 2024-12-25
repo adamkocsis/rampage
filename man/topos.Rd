@@ -3,9 +3,9 @@
 \docType{data}
 \name{topos}
 \alias{topos}
-\title{Calibrated topographic color palettes}
+\title{Topographic color palettes with tiepoints}
 \format{
-A \code{list} with 2 \code{data.frame}s:
+A \code{list} with 4 \code{data.frame}s:
 \describe{
 \item{\code{jakarta}}{: The "Jakarta" theme, color values by \emph{Arcanographia}. }
 \item{\code{havanna2}}{: The "Havanna-2" theme, color values by \emph{Arcanographia}.}

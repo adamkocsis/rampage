@@ -3,7 +3,7 @@
 \name{ramps}
 \alias{ramps}
 \alias{gradinv}
-\title{Colour gradient ramps}
+\title{Color gradient ramps}
 \usage{
 gradinv(n)
 }
@@ -11,13 +11,13 @@ gradinv(n)
 \item{n}{(\code{numeric}) Number of different colors to generate from the palette}
 }
 \value{
-A function producing a colour gradient ramp.
+A function producing a color gradient ramp.
 }
 \description{
 The object contains functions produced by the \code{\link[grDevices:colorRamp]{colorRampPalette}} function.
 }
 \details{
-You can also view single palettes individually. The following colour palettes are implemented:
+You can also view single palettes individually. The following color palettes are implemented:
 \itemize{
 \item \code{gradinv()}: inverse heatmap.
 }
