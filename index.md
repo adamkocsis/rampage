@@ -18,10 +18,12 @@ extension aims to make this control easier and allow users to construct
 and use color ramps based on explicit relationships between colors and
 values.
 
-## Example case
+## Example case / Rationale
 
-The rationale of the package THe visual message of the image is highly
-influenced by the dominance of specific colors on a heatmap.
+THe visual message of a heatmap-figure is highly influenced by the
+dominance of specific colors in the heatmap. For instance, let’s
+consider these example data that come form a slightly shifted (non-zero
+mean) Gaussian distribution:
 
 ``` r
 library(rampage)
@@ -37,8 +39,11 @@ abline(v=mean(vals), col="red")
 
 ![](man/figures/hist.png)
 
-Automatic ramping will use the range of values provided for the plotting
-function, for instance, the default plotting with the `fields` package:
+This small set of data is wrapped in a matrix to give the values some
+positional context, similar to spatial data. When these data are
+visualized, the automatic ramping will use the range of values provided
+for the plotting function: for instance, the default plotting with the
+`fields` package:
 
 ``` r
 library(fields)
@@ -50,11 +55,12 @@ imagePlot(vals, col=rev(gradinv(100)))
 
 ![](man/figures/fields_default.png)
 
-Assuming that the values represent changes from a previous state (or for
-other reasons), it might be important to highlight the `0` level,
-clearly separating increases (positive) from decreases (negative
-values), for instance with the yellow color in this example. This task
-can be solved by defining a color ramp:
+Assuming that the values represent changes from a previous state, it
+might be important to highlight the `0` level, clearly separating
+increases (positive) from decreases (negative values), for which we can
+use the yellow color in this example. This task can be solved by
+defining a calbirated color ramp, that can be constructed with some
+value (`z`) to color (`color`) tiepoints in a `data.frame`:
 
 ``` r
 df <- data.frame(
@@ -64,16 +70,30 @@ df <- data.frame(
 df
 ```
 
-That can be expanded to a full, calibrated color ramp with the `expand`
-function. The resultsing object can be used to control
+    ##      z   color
+    ## 1 -2.0 #690720
+    ## 2 -0.5 #E22C28
+    ## 3  0.0 #FFF99A
+    ## 4  0.5 #76ACCE
+    ## 5  2.0 #33358A
+
+This `data.frame` can than be expanded to a full, calibrated color ramp
+with the `expand` function. The resulting object can be used to control
 `fields::imagePlot` via its `breaks` argument:
 
 ``` r
 # calibrated color ramp
-ramp <- expand(df, n=100)
+ramp <- expand(df, n=100) # check: str(ramp)
 
-# the actual plot
+# The modified color ramp 
 imagePlot(vals, breaks=ramp$breaks, col=ramp$col)
 ```
 
 ![](man/figures/fields_ramped.png)
+
+## Connecting to additional R extension
+
+Using `fields` is just a single example, as many R packages rely on a
+similar `breaks` and `col` argument pair the explicit control of heatmap
+levels. These include (to mention a few), the `terra` and `sf` spatial
+packages.

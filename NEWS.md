@@ -6,11 +6,11 @@
 
 - The `colorpoints` function and `ramplegend` functions for the efficient visualization of ramps.
 - The `paleomap` data object.
-- tests and package webiste
+- Unit tests and package websiste
 
 ### Fixed
 
-- Documentation issues.
+- Load of documentation issues.
 
 ### Known issues/missing
 

@@ -19,10 +19,9 @@ library(badger)
 
 Raaampaaage! This package was written out of sheer anger. Many visulization tasks involve plotting heatmaps, where colors represent numeric values. There is a high number of extensions that have pre-defined components to make such representations with color palettes, but having precise control over the exact relationship between colors and values seems to be a constant technical nuissance. The `rampage` extension aims to make this control easier and allow users to construct and use color ramps based on explicit relationships between colors and values.  
 
-## Example case 
+## Example case / Rationale
 
-The rationale of the package
-THe visual message of the image is highly influenced by the dominance of specific colors on a heatmap. 
+THe visual message of a heatmap-figure is highly influenced by the dominance of specific colors in the heatmap. For instance, let's consider these example data that come form a slightly shifted (non-zero mean) Gaussian distribution:
 
 ```{r, echo=TRUE, eval=FALSE}
 library(rampage)
@@ -53,7 +52,7 @@ dev.off()
 ![](man/figures/hist.png)
 
 
-Automatic ramping will use the range of values provided for the plotting function, for instance, the default plotting with the `fields` package:
+This small set of data is wrapped in a matrix to give the values some positional context, similar to spatial data. When these data are visualized, the automatic ramping will use the range of values provided for the plotting function: for instance, the default plotting with the `fields` package:
 
 ```{r, echo=TRUE, eval=FALSE}
 library(fields)
@@ -69,9 +68,9 @@ dev.off()
 
 ![](man/figures/fields_default.png)
 
-Assuming that the values represent changes from a previous state (or for other reasons), it might be important to highlight the `0` level, clearly separating increases (positive) from decreases (negative values), for instance with the yellow color in this example. This task can be solved by defining a color ramp:
+Assuming that the values represent changes from a previous state, it might be important to highlight the `0` level, clearly separating increases (positive) from decreases (negative values), for which we can use the yellow color in this example. This task can be solved by defining a calbirated color ramp, that can be constructed with some value (`z`) to color (`color`) tiepoints in a `data.frame`:
 
-```{r, echo=TRUE, eval=FALSE}
+```{r, echo=TRUE, eval=TRUE}
 df <- data.frame(
   z=c(-2, -0.5, 0, 0.5, 2),
   color=rev(gradinv(5))
@@ -79,13 +78,13 @@ df <- data.frame(
 df
 ```
 
-That can be expanded to a full, calibrated color ramp with the `expand` function. The resultsing object can be used to control `fields::imagePlot` via its `breaks` argument:
+This `data.frame` can than be expanded to a full, calibrated color ramp with the `expand` function. The resulting object can be used to control `fields::imagePlot` via its `breaks` argument:
 
 ```{r, echo=TRUE, eval=FALSE}
 # calibrated color ramp
-ramp <- expand(df, n=100)
+ramp <- expand(df, n=100) # check: str(ramp)
 
-# the actual plot
+# The modified color ramp 
 imagePlot(vals, breaks=ramp$breaks, col=ramp$col)
 ```
 
@@ -101,3 +100,8 @@ dev.off()
 ```
 
 ![](man/figures/fields_ramped.png)
+
+## Connecting to additional R extension
+
+Using `fields` is just a single example, as many R packages rely on a similar `breaks` and `col` argument pair the explicit control of heatmap levels. These include (to mention a few), the `terra` and `sf` spatial packages. 
+
