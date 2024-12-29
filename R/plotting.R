@@ -4,6 +4,7 @@
 #'
 #' @param x The x argument of \code{points}.
 #' @param y The y argument of \code{points}.
+#' @param z Numeric, the variable to visualize using the colors.
 #' @param ramp A calibramp object (including both breaks and colors).
 #' @param col A vector of colors. Used only if ramp is not given.
 #' @param breaks A vector of breaks. If given, this has to be one element longer than the length of col.
@@ -31,7 +32,7 @@ colorpoints <- function(x, y=NULL, z, ramp=NULL, col=NULL, breaks=NULL, legend=l
 	cutUp <- cut(z, breaks, labels=FALSE)
 
 	# draw the actual points
-	points(x=x, y=y, col=col[cutUp], ... )
+	graphics::points(x=x, y=y, col=col[cutUp], ... )
 
 	# draw a legend
 	if(!is.null(legend)){
@@ -54,7 +55,8 @@ colorpoints <- function(x, y=NULL, z, ramp=NULL, col=NULL, breaks=NULL, legend=l
 #' @param shift Used instead of the inset argument of the default legend. If plotted within the inner plotting area, the x and y user coordinates with which the position of the legend will be shifted to be shifted.
 #' @param ramp A calibrated color ramp object. Either \code{ramp} or both \code{col} and \code{breaks} are required.
 #' @param col Vector of colors.
-#' @param breaks Breaks between the colors..
+#' @param breaks Breaks between the colors.
+#' @param zlim A numeric vector with two values, passed to \code{trimramp}.  The low and high extreme values to be shown on the legend.
 #' @param height Height of the legend bar in inches.
 #' @param width Width of the legend bar in inches.
 #' @param tick.length The length of the legend's ticks.
@@ -227,24 +229,24 @@ ramplegend <- function(x="topleft", y=NULL, shift=c(0,0), ramp=NULL, col=NULL, b
 	do.call("rect",boxArgs)
 
 	# the boundaries of the rectangles
-	rect(
+	graphics::rect(
 		ybottom=y+cex*(newBreaks[2:length(newBreaks)-1]-y),
 		ytop=y+cex*(newBreaks[2:length(newBreaks)]-y),
 		xleft=x+cex*(bar.left-x), xright=x+cex*(bar.right-x), col=col, border=NA)
 
 	# the border of the bar
-	rect(ybottom=y+cex*(bar.bottom-y), ytop=y+cex*(bar.top-y),
+	graphics::rect(ybottom=y+cex*(bar.bottom-y), ytop=y+cex*(bar.top-y),
 		 xleft=x+cex*(bar.left-x), xright=x+cex*(bar.right-x), col=NA)
 
 	# the ticks
-	segments(x0=x+cex*(tick.left-x), x1=x+cex*(tick.right-x),
+	graphics::segments(x0=x+cex*(tick.left-x), x1=x+cex*(tick.right-x),
 		y0=y+cex*(tick.y-y), y1=y+cex*(tick.y-y))
 
 	# labels
 #	text(x=x+cex*(tick.right+labelOffsetX/2-x),
 #		y=y+cex*(tick.y-y), label=label, cex=cex*1.2)
 
-	text(x=x+cex*(text.right-x),pos=4,
+	graphics::text(x=x+cex*(text.right-x),pos=4,
 		y=y+cex*(tick.y-y), label=label, cex=cex*1.2)
 }
 
@@ -253,10 +255,12 @@ ramplegend <- function(x="topleft", y=NULL, shift=c(0,0), ramp=NULL, col=NULL, b
 #'
 #' The method can be used to inspect a calbirated color ramp object.
 #'
-#' @param x The calbirated color ramp object (\code{calibramp}-class object).
+#' @param x The calibirated color ramp object (\code{calibramp}-class object).
+#' @param ... Arguments passed to the \code{rampplot} function.
 #' @param breaks Should the distribution of breaks be visualized?
 #'
 #' @export
+#' @rdname rampplot
 #' @examples
 #' # the paleomap ramp
 #' data(paleomap)
@@ -265,19 +269,28 @@ ramplegend <- function(x="topleft", y=NULL, shift=c(0,0), ramp=NULL, col=NULL, b
 #' tiepoints <- data.frame(z=c(c(-1, -0.1, 0, 0.1, +1)), color=gradinv(5))
 #' ramp <- expand(tiepoints, n=255)
 #' plot(ramp)
-plot.calibramp<- function(x, breaks=FALSE){
+plot.calibramp<- function(x, ...){
+	rampplot(x, ...)
+}
+
+
+#' @export
+#' @rdname rampplot
+rampplot <- function(x, breaks=FALSE){
+
 	plot(NULL, NULL,
 		xlim=c(-1,1), ylim=range(x$breaks), axes=FALSE,
 		ylab="z", xlab="", xaxs="i", yaxs="i")
-	rect(xleft=-1, xright=1,
+	graphics::rect(xleft=-1, xright=1,
 		ybottom=x$breaks[-1],
 		ytop=x$breaks[-length(x$breaks)],
 		col=x$col, border=NA)
-	axis(2)
-	box()
+	graphics::axis(2)
+	graphics::box()
 
-	mtext(side=1, line=1, text=paste0("Minimum break value: ", min(x$breaks)))
-	mtext(side=3, line=1, text=paste0("Maximum break value: ", max(x$breaks)))
+	graphics::mtext(side=1, line=1, text=paste0("Minimum break value: ", min(x$breaks)))
+	graphics::mtext(side=3, line=1, text=paste0("Maximum break value: ", max(x$breaks)))
 
-	if(breaks) abline(h=x$breaks, col="red")
+	if(breaks) graphics::abline(h=x$breaks, col="red")
+
 }

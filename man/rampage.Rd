@@ -14,7 +14,7 @@ This is still a Beta version. As is R, this is free software and comes with ABSO
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://adamtkocsis.com/rampage}
+  \item \url{https://adamtkocsis.com/rampage/}
   \item Report bugs at \url{https://github.com/adamkocsis/rampage/issues}
 }
 

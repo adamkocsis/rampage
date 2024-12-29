@@ -33,7 +33,9 @@ ramplegend(
 
 \item{col}{Vector of colors.}
 
-\item{breaks}{Breaks between the colors..}
+\item{breaks}{Breaks between the colors.}
+
+\item{zlim}{A numeric vector with two values, passed to \code{trimramp}.  The low and high extreme values to be shown on the legend.}
 
 \item{height}{Height of the legend bar in inches.}
 

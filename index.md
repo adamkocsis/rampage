@@ -35,9 +35,6 @@ hist(vals, breaks=20)
 abline(v=mean(vals), col="red")
 ```
 
-    ## X11cairo 
-    ##        2
-
 ![](man/figures/hist.png)
 
 Automatic ramping will use the range of values provided for the plotting
@@ -48,8 +45,8 @@ library(fields)
 imagePlot(vals, col=rev(gradinv(100)))
 ```
 
-    ## X11cairo 
-    ##        2
+    ## png 
+    ##   2
 
 ![](man/figures/fields_default.png)
 
@@ -79,5 +76,4 @@ ramp <- expand(df, n=100)
 imagePlot(vals, breaks=ramp$breaks, col=ramp$col)
 ```
 
-    ## X11cairo 
-    ##        2
+![](man/figures/fields_ramped.png)

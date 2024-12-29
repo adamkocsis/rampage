@@ -9,3 +9,13 @@
 "_PACKAGE"
 
 #' @importFrom grDevices colorRampPalette
+#' @importFrom graphics rect
+#' @importFrom graphics axis
+#' @importFrom graphics box
+#' @importFrom graphics mtext
+#' @importFrom graphics abline
+#' @importFrom graphics par
+#' @importFrom graphics points
+#' @importFrom graphics segments
+#' @importFrom graphics text
+NULL

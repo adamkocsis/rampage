@@ -36,7 +36,7 @@ hist(vals, breaks=20)
 abline(v=mean(vals), col="red")
 ```
 
-```{r, echo=FALSE, eval=TRUE}
+```{r, echo=FALSE, eval=TRUE, results=FALSE}
 library(rampage)
 
 set.seed(1)
@@ -90,7 +90,7 @@ imagePlot(vals, breaks=ramp$breaks, col=ramp$col)
 ```
 
 
-```{r, echo=FALSE, eval=TRUE}
+```{r, echo=FALSE, eval=TRUE, results=FALSE}
 # calibrated color ramp
 ramp <- expand(df, n=100)
 

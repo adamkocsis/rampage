@@ -20,6 +20,8 @@ colorpoints(
 
 \item{y}{The y argument of \code{points}.}
 
+\item{z}{Numeric, the variable to visualize using the colors.}
+
 \item{ramp}{A calibramp object (including both breaks and colors).}
 
 \item{col}{A vector of colors. Used only if ramp is not given.}

@@ -2,12 +2,17 @@
 % Please edit documentation in R/plotting.R
 \name{plot.calibramp}
 \alias{plot.calibramp}
+\alias{rampplot}
 \title{Visualize a calibrated color ramp}
 \usage{
-\method{plot}{calibramp}(x, breaks = FALSE)
+\method{plot}{calibramp}(x, ...)
+
+rampplot(x, breaks = FALSE)
 }
 \arguments{
-\item{x}{The calbirated color ramp object (\code{calibramp}-class object).}
+\item{x}{The calibirated color ramp object (\code{calibramp}-class object).}
+
+\item{...}{Arguments passed to the \code{rampplot} function.}
 
 \item{breaks}{Should the distribution of breaks be visualized?}
 }
