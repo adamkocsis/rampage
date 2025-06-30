@@ -11,15 +11,17 @@ gradinv(n)
 \item{n}{(\code{numeric}) Number of different colors to generate from the palette}
 }
 \value{
-A function producing a color gradient ramp.
+A character vector of color values.
 }
 \description{
-The object contains functions produced by the \code{\link[grDevices:colorRamp]{colorRampPalette}} function.
+Contains functions produced by the \code{\link[grDevices:colorRamp]{colorRampPalette}} function.
 }
 \details{
 You can also view single palettes individually. The following color palettes are implemented:
 \itemize{
-\item \code{gradinv()}: inverse heatmap.
+\item \code{gradinv()}: inverse heatmap, primarily intended to emphasize distinctions between no-change (yellow) and change (blue/red) cases.
+Based on the color blindness simulator Coblis, the palette is very color disability-friendly, except for monochromacy/achromatopsia, where the two change scenarios (red and blue) become very difficult to distinguish.
+Additional markings (e.g. labels indicating high and low) are recommended for these cases.
 }
 }
 \examples{

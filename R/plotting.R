@@ -1,16 +1,40 @@
-#' Colored points
+#' Heatmap with colored points
 #'
-#' The function is a wrapper around the points function, controling the color of the points similar to \code{ggplot} but using S-style plotting.
+#' The function is a wrapper around the \code{\link[graphics]{points}} function, controlling the color of the points similar to \code{ggplot}, but using S-style plotting.
+#' If neither \code{ramp}, nor \code{col} or \code{breaks} are given, the function will default to using the internal \code{gradinv} palette with 256 levels evenly distributed from the minimum to the maximum of \code{z}.
 #'
-#' @param x The x argument of \code{points}.
-#' @param y The y argument of \code{points}.
-#' @param z Numeric, the variable to visualize using the colors.
-#' @param ramp A calibramp object (including both breaks and colors).
-#' @param col A vector of colors. Used only if ramp is not given.
-#' @param breaks A vector of breaks. If given, this has to be one element longer than the length of col.
-#' @param legend A list of arguments passed to the ramplegend function. Set to \code{NULL} if you do not want to plot a legend.
-#' @param ... Arguments passed to \code{points}.
+#' @param x The \code{x} argument of \code{points}.
+#' @param y The \code{y} argument of \code{points}.
+#' @param z \code{numeric}, the variable to visualize using the colors.
+#' @param ramp A \code{calibramp}-class object (including both \code{breaks} and \code{colors}).
+#' @param col A vector of colors. Used only if \code{ramp} is not given.
+#' @param breaks A vector of breaks. If given, this has to be one element longer than the length of \code{col}.
+#' @param legend A list of arguments passed to the \code{\link{ramplegend}} function. Set to \code{NULL} if you do not want to plot a legend.
+#' @param ... Arguments passed to the \code{\link[graphics]{points}} function.
+#' @return The function has no return value.
 #' @export
+#' @examples
+#' # random points
+#' set.seed(1)
+#' x <- rnorm(5000) # x coord
+#' y <- rnorm(5000) # y coord
+#' dist <- sqrt(x^2+y^2) # distance from origin
+#'
+#' # default plotting
+#' plot(x,y, col=NA)
+#' colorpoints(x=x, y=y, z=dist)
+#'
+#' # custom color scheme
+#' levs<- data.frame(color=rainbow(5), z=c(0, 0.5,1, 3, 4.5))
+#' ramp <-expand(levs, n=256)
+#'
+#' # very customized (experiment with difference device sizes!)
+#' plot(x,y, col=NA, main="Distance to origin")
+#' colorpoints(x=x, y=y, z=dist,
+#' 	col=paste0(ramp$col, "BB"),
+#' 	breaks=ramp$breaks,
+#' 	pch=16,
+#' 	legend=list(x=3,y=0,cex=0.7, box.args=list(border=NA)))
 colorpoints <- function(x, y=NULL, z, ramp=NULL, col=NULL, breaks=NULL, legend=list(x="topleft"), ...){
 	# if a ramp object is given
 	if(!is.null(ramp)){
@@ -22,6 +46,9 @@ colorpoints <- function(x, y=NULL, z, ramp=NULL, col=NULL, breaks=NULL, legend=l
 	# if the breaks are not given, this has to done automatically
 	# split up the range of z equally to as many bins as many are given
 	if(is.null(breaks)){
+
+		# if col is not present until now, it needs to be defaulting to something 256 is good
+		if(is.null(col)) col <- gradinv(256)
 		breaks <- seq(min(z, na.rm=TRUE), max(z, na.rm=TRUE), length.out=length(col)+1)
 	}
 
@@ -29,7 +56,10 @@ colorpoints <- function(x, y=NULL, z, ramp=NULL, col=NULL, breaks=NULL, legend=l
 	if(length(breaks)!=(length(col)+1)) stop("The number of breaks have to be one more than the number of colors.")
 
 	# cut up wih breaks
-	cutUp <- cut(z, breaks, labels=FALSE)
+	cutUp <- cut(z, breaks, labels=FALSE, include.lowest=TRUE)
+
+	# look out for missing values
+	if(any(is.na(cutUp))) warning("The provided breaks do not cover the entire range of 'z'. These values are not plotted!")
 
 	# draw the actual points
 	graphics::points(x=x, y=y, col=col[cutUp], ... )
@@ -50,9 +80,11 @@ colorpoints <- function(x, y=NULL, z, ramp=NULL, col=NULL, breaks=NULL, legend=l
 
 #' Create a heatmap legend based on calibrated color ramp values
 #'
-#' @param x Position of the legend or the left coordinate of legend box.
-#' @param y Coordinate of the upperleft coordinate of the legend (if needed).
-#' @param shift Used instead of the inset argument of the default legend. If plotted within the inner plotting area, the x and y user coordinates with which the position of the legend will be shifted to be shifted.
+#' Optional legend for cases where calibramp objects are used.
+#'
+#' @param x Position of the legend or the left coordinate of legend box. Either a numeric coordinate value or a the \code{"topleft"}, \code{"topright"}, \code{"bottomleft"} or \code{"bottomright"}.
+#' @param y Coordinate of the upper edge of the legend (if needed).
+#' @param shift Used instead of the inset argument of the default legend. If plotted within the inner plotting area, the x and y user coordinates with which the position of the legend will be shifted.
 #' @param ramp A calibrated color ramp object. Either \code{ramp} or both \code{col} and \code{breaks} are required.
 #' @param col Vector of colors.
 #' @param breaks Breaks between the colors.
@@ -62,14 +94,53 @@ colorpoints <- function(x, y=NULL, z, ramp=NULL, col=NULL, breaks=NULL, legend=l
 #' @param tick.length The length of the legend's ticks.
 #' @param cex Legend size scaler.
 #' @param box.args the box's arguments.
-#' @param horizontal Legend orientation. Not yet implemented!
+#' @param horizontal Legend orientation. Not yet implemented
 #' @param at Where should the legend be drawn in the z dimension?
 #' @param label What are the labels
 #' @return The function has no return value.
-#' @export
 #' @examples
-#' # Examples will come here
-#' plot(1:10)
+#' # example with colored points
+#' # basic points
+#' v <- seq(0,20, 0.01)
+#' sine <- sin(v)
+#'
+#' # visualize as a plot
+#' plot(v,sine)
+#'
+#' # colors for sine values
+#' levs<- data.frame(color=gradinv(5), z=c(-1, -0.2, 0, 0.2, 1))
+#' ramp<- expand(levs, n=256)
+#'
+#' # colored points
+#' colorpoints(x=v, y=sine, z=sine, cex=6, pch=16, legend=NULL)
+#'
+#' # the legend
+#' ramplegend(x=0, y=0.3, ramp=ramp, cex=0.5, box.args=list(border=NA, col=NA))
+#'
+#'
+#' # example with histogram
+#' set.seed(1)
+#' x <- rnorm(3000, 3,1)
+#' levs<- data.frame(color=gradinv(7), z=c(-1, 1,1.04, 3, 4.96, 5, 7))
+#' ramp <-expand(levs, n=400)
+#'
+#' # histogram showing distribution
+#' hist(x, col=ramp$col, breaks=ramp$breaks, border=NA)
+#' ramplegend("topleft", ramp=ramp, at=c(1.04, 3, 4.96), label=c("-1.96 SD", "mean", "+1.96 SD"))
+#'
+#'
+#' # example with volcano
+#' data(volcano)
+#' data(topos)
+#'
+#' # create ramp
+#' levs <- topos$jakarta[topos$jakarta$z>0,]
+#' levs$z <- c(200, 180, 165, 130, 80)
+#' ramp <-expand(levs, n=100)
+#'
+#' image(volcano, col=ramp$col, breaks=ramp$breaks)
+#' ramplegend(x=0.8, y=0.8, ramp=ramp, cex=0.9)
+#' @export
 ramplegend <- function(x="topleft", y=NULL, shift=c(0,0), ramp=NULL, col=NULL, breaks=NULL, zlim=NULL, height=3, width=0.3,
 	tick.length=0.15, cex=1, box.args=list(col="#ffffffbb"), horizontal=FALSE,
 	at=NULL, label=NULL){
@@ -217,7 +288,6 @@ ramplegend <- function(x="topleft", y=NULL, shift=c(0,0), ramp=NULL, col=NULL, b
 	# the positions of the ticks
 	tick.y <- bar.bottom + (at-min(breaks))*colScaler
 
-
 	# assumes left to right
 	box.right <- tick.right+labelOffsetX
 	box.bottom <- bar.bottom-params$cxy[1]*2
@@ -253,14 +323,19 @@ ramplegend <- function(x="topleft", y=NULL, shift=c(0,0), ramp=NULL, col=NULL, b
 
 #' Visualize a calibrated color ramp
 #'
-#' The method can be used to inspect a calbirated color ramp object.
+#' The method can be used to inspect and visualize calbirated color ramp object.
 #'
 #' @param x The calibirated color ramp object (\code{calibramp}-class object).
 #' @param ... Arguments passed to the \code{rampplot} function.
 #' @param breaks Should the distribution of breaks be visualized?
+#' @param breaklabs Should the minimum and maximum break labels be visualized?
+#' @param axis.args Arguments passed to the axis function.
+#' @param ylab y-axis label.
+#' @param xlab x-axis label.
 #'
 #' @export
-#' @rdname rampplot
+#' @return The functions have no return values.
+#' @rdname plot
 #' @examples
 #' # the paleomap ramp
 #' data(paleomap)
@@ -275,21 +350,23 @@ plot.calibramp<- function(x, ...){
 
 
 #' @export
-#' @rdname rampplot
-rampplot <- function(x, breaks=FALSE){
+#' @rdname plot
+rampplot <- function(x, breaks=FALSE, breaklabs=TRUE, axis.args=list(side=2), ylab="z", xlab=""){
 
 	plot(NULL, NULL,
 		xlim=c(-1,1), ylim=range(x$breaks), axes=FALSE,
-		ylab="z", xlab="", xaxs="i", yaxs="i")
+		ylab=ylab, xlab=xlab, xaxs="i", yaxs="i")
 	graphics::rect(xleft=-1, xright=1,
 		ybottom=x$breaks[-1],
 		ytop=x$breaks[-length(x$breaks)],
 		col=x$col, border=NA)
-	graphics::axis(2)
+	do.call(graphics::axis, axis.args)
 	graphics::box()
 
-	graphics::mtext(side=1, line=1, text=paste0("Minimum break value: ", min(x$breaks)))
-	graphics::mtext(side=3, line=1, text=paste0("Maximum break value: ", max(x$breaks)))
+	if(breaklabs){
+		graphics::mtext(side=1, line=1, text=paste0("Minimum break value: ", min(x$breaks)))
+		graphics::mtext(side=3, line=1, text=paste0("Maximum break value: ", max(x$breaks)))
+	}
 
 	if(breaks) graphics::abline(h=x$breaks, col="red")
 

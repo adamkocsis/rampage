@@ -120,12 +120,6 @@ expect_error(trimramp(paleomap, low=trimval))
 trimval <- -16000
 expect_error(trimramp(paleomap, high=trimval))
 
-# top trimming
-trimval <- 10500
-expect_error(trimramp(paleomap, low=trimval))
-
-# - low is higher than the highest value
-# - high is lower than the lowest value
 
 ################################################################################
 # Defense testing

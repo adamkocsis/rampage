@@ -3,7 +3,7 @@
 \docType{data}
 \name{paleomap}
 \alias{paleomap}
-\title{Topographic gradient map color map of PALEOMAP project}
+\title{Topographic gradient map color map of the PALEOMAP project}
 \format{
 A \code{calibramp}-class \code{list} with 3 \code{numeric}s:
 \describe{
@@ -16,9 +16,9 @@ A \code{calibramp}-class \code{list} with 3 \code{numeric}s:
 \url{https://zenodo.org/records/10659112}
 }
 \usage{
-paleomap
+data(paleomap)
 }
 \description{
-The elevation to color bindings are from Scotese, C. R., Vérard, C., Burgener, L., Elling, R. P., & Kocsis, A. T. (2025). The Cretaceous World: Plate Tectonics, Paleogeography, and Paleoclimate. Geological Society, London, Special Publications, 544(1), SP544–2024..
+The elevation to color bindings are the work of C. Scotese. Data from Scotese, C. R., Vérard, C., Burgener, L., Elling, R. P., & Kocsis, A. T. (2025). The Cretaceous World: Plate Tectonics, Paleogeography, and Paleoclimate. Geological Society, London, Special Publications, 544(1), SP544–2024..
 }
 \keyword{datasets}

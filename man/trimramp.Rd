@@ -7,19 +7,20 @@
 trimramp(x, low = NULL, high = NULL)
 }
 \arguments{
-\item{x}{A calibrated color ramp (e.g. \code{calibramp} class object.}
+\item{x}{A calibrated color ramp (e.g. \code{calibramp}-class object.}
 
-\item{low}{The minimum value in the calibrated ramp.}
+\item{low}{A single \code{numeric} value, the minimum value in the calibrated ramp.}
 
-\item{high}{The maximum value in the calibrated ramp.}
+\item{high}{A single \code{numeric} value, the maximum value in the calibrated ramp.}
 }
 \value{
-A trimmed version of \code{x}
+A trimmed version of \code{x}, another \code{calibramp}-class object.
 }
 \description{
-Trimming a calibrated color ramp object.
+Modify the minimum and maximum values in a \code{calibramp}-class object produced by the \code{\link{expand}} function.
 }
 \examples{
 data(paleomap)
-trimmed <- trimramp(paleomap, low=-5000, high=5000)
+trimmed <- trimramp(paleomap, low=-500, high=1500)
+plot(trimmed)
 }

@@ -42,7 +42,7 @@ test_plot <- function(expr, path, dir=NULL, temp=tempdir(), plotter=svg, height=
 
 	# create the plot in the temorary directory
 	plotter(tempFile, height=height, width=width)
-		eval(expr)
+		eval(expr, envir=parent.frame())
 	dev.off()
 
 	# test if file is present

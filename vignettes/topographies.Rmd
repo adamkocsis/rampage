@@ -124,8 +124,58 @@ imagePlot(volcano, breaks=ramp$breaks, col=ramp$col, axes=FALSE)
 
 ### Built-in objects for topographies
 
-### `terra`
 
-The `terra` extension. 
+The rampage package includes a built-in set of topogoraphic color schemes (`topos`). These can be accessed with the `data` function.
+
+```{r, echo=TRUE}
+data(topos)
+```
+
+This object is a `list` of `data.frames` that are potential inputs to the `expand` function. For instance, if you want to generate 256 colors from the `'zagreb'` theme, you can do that with
+
+```{r}
+topoRamp <- expand(topos$zagreb, n=256)
+```
+
+This ramp can be visualized with the `rampplot` function:
+
+```{r, fig.height=7, fig.width=7}
+rampplot(topoRamp)
+```
+
+This shows the exact values that are rendered to the specific interals of height.
+
+
+### Topographies with `terra`
+
+The `terra` extension is an ideal tool to visualize georeference topographic data, such as the [ETOPO](https://www.ncei.noaa.gov/products/etopo-global-relief-model) global topographic relief model. To provide an example, a downscaled 1x1 degree-resolution version of this ETOPO1 version of this model is deposited on the [package's website](http://adamtkocsis.com/rampage/ETOPO1_ice_c_20110606_tiff_1.tif), which you can read in with the following line of code:
+
+```{r, echo=TRUE}
+library(terra)
+etopo <- rast("http://adamtkocsis.com/rampage/ETOPO1_ice_c_20110606_tiff_1.tif")
+etopo
+```
+
+This can be visualized with the default viridis palette using the plot function:
+
+```{r, fig.height=7, fig.width=7}
+plot(etopo)
+```
+
+We can get this to work with the our topographic ramp, by referring to the `col` abd `breaks` arguments of the plot, as we did before.
+
+```{r, fig.height=7, fig.width=7}
+plot(etopo, col=topoRamp$col, breaks=topoRamp$breaks)
+```
+
+Note that by default this will use a categorical legend, which is not ideal.
+
+
+```{r, fig.height=7, fig.width=7}
+plot(etopo, col=topoRamp$col, breaks=topoRamp$breaks, legend=FALSE)
+ramplegend(col=topoRamp$col,breaks=topoRamp$breaks, cex=0.6, x=-160, y=0)
+```
+
+Which leaves a much better visual impression.
 
 

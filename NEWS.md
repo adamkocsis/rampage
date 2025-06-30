@@ -1,12 +1,12 @@
 # Change log of the R package 'rampage'
 
-# rampage 0.2.0 - 2024-12-22
+# rampage 0.2.0 - 2025-06-26
 
 ### Added
 
 - The `colorpoints` function and `ramplegend` functions for the efficient visualization of ramps.
 - The `paleomap` data object.
-- Unit tests and package websiste
+- Finished unit testing suite and package websiste.
 
 ### Fixed
 
@@ -14,7 +14,7 @@
 
 ### Known issues/missing
 
-- The `ramplegend` funciton does not have `x="left"`, `x="right"`, `"x=bottom"` and top `"x=left"` settings, `horizontal=TRUE` is not yet implemented, and neither are margial legends.
+- The `ramplegend` function does not have `x="left"`, `x="right"`, `"x=bottom"` and top `"x=left"` settings, `horizontal=TRUE` is not yet implemented, and neither are margial legends.
 
 * * *
 

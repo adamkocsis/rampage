@@ -1,10 +1,10 @@
 ---
-title: "Base plots"
+title: "Histogram examples"
 description: >
   Ramps with base distribution plotting.
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Base plots}
+  %\VignetteIndexEntry{Histogram examples}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The purpose of this minimal package is to give full access to the customization and biasing of color ramps in the R environment. The resulting objects can be instantly passed to various plotting methods, such those provided by `sf`, `terra` and `fields` to mention a few.
+The purpose of this utility package is to give full access to the customization and calibration of color ramps in the R environment. The resulting objects can be instantly passed to various plotting methods, such those provided by `sf`, `terra` and `fields` to mention a few. See some examples below and on the package's website: https://adamtkocsis.com/rampage/.
 
 ```{r}
 library(rampage)
@@ -24,7 +24,7 @@ library(rampage)
 
 The package itself relies on `grDevices::colorRampPalette` function, which is used to linearly interpolate between colors that are tied to specific values. 
 
-The basic functionality of the package can be combined with any color, either custom-selected or coming from a color ramp function. To provide an example, `rampage` includes a simple 5-color ramp called `gradinv`:
+The basic functionality of the package can be combined with any colors, either custom-selected or coming from a color ramp function. To provide an example, `rampage` includes a simple 5-color ramp called `gradinv`:
 
 ```{r}
 gradinv
@@ -51,17 +51,17 @@ df <- data.frame(
 df
 ```
 
-Using the default arguments.
+Using the default `z` and `color` arguments:
 
 ```{r}
 ex <- expand(df, n=50)
 ```
 
 
-This `hist` function can use a set of breakpoints (`breaks`) that will be used to define the bars. The color of the individual bars is vectorized, if you provide exactly as many colors as many bars there are (number of breaks minus one), then the bars will be colored accordingly.
+This `hist` function can be used with a set of breakpoints (`breaks`) that are used to define the bars. The color of the individual bars is vectorized, if exactly as many colors as many bars are provided (number of breaks minus one), then the bars will be colored accordingly.
 
-```{r}
-hist(vals, breaks=ex$breaks, col=ex$col)
+```{r, fig.width=7, fig.height=6}
+hist(vals, breaks=ex$breaks, col=ex$col, border=NA)
 ```
 
 ## More breaks
@@ -72,14 +72,14 @@ The number of levels (breakpoints -1) is directly controled by `n`. A finer reso
 exMore <- expand(df, n=100)
 ```
 
-```{r}
-hist(vals, breaks=exMore$breaks, col=exMore$col)
+```{r, fig.width=7, fig.height=6}
+hist(vals, breaks=exMore$breaks, col=exMore$col, border=NA)
 ```
 
 
 ## More tiepoints 
 
-Specifying more tiepoints in the `data.frame` will give more control over the exact placement of the colors. For example if we want to clearly separate the values around 2 (population mean), then we can tie more colors to values that just above and below the values
+Specifying more tiepoints in the `data.frame` will give more control over the exact placement of the colors. For example if we want to clearly separate the values around 1 (population mean), then we can tie more colors to values that just above and below the values
 
 ```{r}
 dfMoreTies <- data.frame(
@@ -97,8 +97,8 @@ exMoreTies <- rampage::expand(dfMoreTies, n=200)
 
 Which can be visualized with the `hist` function.
 
-```{r}
-hist(vals, breaks=exMoreTies$breaks, col=exMoreTies$col)
+```{r, fig.width=7, fig.height=6}
+hist(vals, breaks=exMoreTies$breaks, col=exMoreTies$col, border=NA)
 ```
 
 
@@ -118,9 +118,10 @@ Expanding to a full color ramp:
 exSkewed <- rampage::expand(dfSkewed, n=200)
 ```
 
-```{r}
-hist(vals, breaks=exSkewed$breaks, col=exSkewed$col)
+```{r, fig.width=7, fig.height=6}
+hist(vals, breaks=exSkewed$breaks, col=exSkewed$col, border=NA)
 ```
+
 
 See the package website for package-specific examples.
 

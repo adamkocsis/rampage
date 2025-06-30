@@ -19,7 +19,7 @@ df <- data.frame(
 ex <- expand(df, n=100)
 
 # the tested function for now is here.
-source("rampage/R/plotting.R")
+# source("rampage/R/plotting.R")
 
 # to make tests easier
 dir <- "rampage/tests/results/ramplegend/colpoints"
@@ -39,7 +39,7 @@ expr <- expression({
 
 	# standard legend size
 	ramplegend(x="topleft", col=ex$col, breaks=ex$breaks, zlim=NULL, height=3,
-		width=0.3,tick.length=0.15,cex=1, nticks=NULL, at=c(-5, 0, 5))
+		width=0.3,tick.length=0.15,cex=1, at=c(-5, 0, 5))
 
 })
 
@@ -56,7 +56,7 @@ expr <- expression({
 
 	# standard legend size
 	ramplegend(x="topleft", col=ex$col, breaks=ex$breaks, zlim=NULL, height=3,
-		width=0.3,tick.length=0.15,cex=0.7, nticks=NULL, at=c(-5, 0, 5))
+		width=0.3,tick.length=0.15,cex=0.7,at=c(-5, 0, 5))
 
 })
 
@@ -73,7 +73,7 @@ expr <- expression({
 
 	# standard legend size
 	ramplegend(x="topleft", col=ex$col, breaks=ex$breaks, zlim=NULL, height=3,
-		width=0.3,tick.length=0.15,cex=0.5, nticks=NULL, at=c(-5, 0, 5))
+		width=0.3,tick.length=0.15,cex=0.5, at=c(-5, 0, 5))
 
 })
 
@@ -93,7 +93,7 @@ expr <- expression({
 
 	# standard legend size
 	ramplegend(x=-3, y=2.5, col=ex$col, breaks=ex$breaks, zlim=NULL, height=3,
-		width=0.3,tick.length=0.15,cex=1, nticks=NULL, at=c(-5, 0, 5))
+		width=0.3,tick.length=0.15,cex=1, at=c(-5, 0, 5))
 
 	abline(h=2.5)
 	abline(v=-3)
@@ -112,7 +112,7 @@ expr <- expression({
 
 	# standard legend size
 	ramplegend(x=-3, y=2.5, col=ex$col, breaks=ex$breaks, zlim=NULL, height=3,
-		width=0.3,tick.length=0.15,cex=0.5, nticks=NULL, at=c(-5, 0, 5))
+		width=0.3,tick.length=0.15,cex=0.5, at=c(-5, 0, 5))
 
 	abline(h=2.5)
 	abline(v=-3)

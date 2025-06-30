@@ -8,19 +8,45 @@
 
 ## Stretchable Color Ramps
 
-Raaampaaage! This package was written out of sheer anger. Many
-visulization tasks involve plotting heatmaps, where colors represent
-numeric values. There is a high number of extensions that have
-pre-defined components to make such representations with color palettes,
-but having precise control over the exact relationship between colors
-and values seems to be a constant technical nuissance. The `rampage`
-extension aims to make this control easier and allow users to construct
-and use color ramps based on explicit relationships between colors and
-values.
+This package was written out of sheer anger. Many visulization tasks
+involve plotting heatmaps, where colors represent numeric values. There
+is a high number of extensions that have pre-defined components to make
+such representations with color palettes, but having precise control
+over the exact relationship between colors and values seems to be a
+constant technical nuissance. The `rampage` extension aims to make this
+control easier and allow users to construct and use color ramps based on
+explicit relationships between colors and values.
 
-## Example case / Rationale
+## Example 1: Topographies
 
-THe visual message of a heatmap-figure is highly influenced by the
+Consider this coarsened version of the [ETOPO topographic relief
+model](https://www.ncei.noaa.gov/products/etopo-global-relief-model)
+(0.25x0.25 degree resolution of the cell-registerd version of ETOPO1),
+using the widely-used extension package `terra`.
+
+``` r
+library(rampage)
+library(terra)
+
+# load data
+etopo <- rast("")
+
+# use a built-in dataset to get color to elevation bindings
+data(topos)
+
+# the levels
+levs<- topos$etopo
+
+# expand and plot
+ramp <- expand(levs, n=500)
+
+# plotting
+plot(etopo, col=ramp$col, breaks=ramp$breaks, legend=FALSE)
+```
+
+## Example 2: Heatmaps
+
+The visual message of a heatmap-figure is highly influenced by the
 dominance of specific colors in the heatmap. For instance, let’s
 consider these example data that come form a slightly shifted (non-zero
 mean) Gaussian distribution:
@@ -50,17 +76,38 @@ library(fields)
 imagePlot(vals, col=rev(gradinv(100)))
 ```
 
-    ## png 
-    ##   2
+    ## Loading required package: spam
+
+    ## Spam version 2.10-0 (2023-10-23) is loaded.
+    ## Type 'help( Spam)' or 'demo( spam)' for a short introduction 
+    ## and overview of this package.
+    ## Help for individual functions is also obtained by adding the
+    ## suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
+
+    ## 
+    ## Attaching package: 'spam'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     backsolve, forwardsolve
+
+    ## Loading required package: viridisLite
+
+    ## 
+    ## Try help(fields) to get started.
 
 ![](man/figures/fields_default.png)
 
-Assuming that the values represent changes from a previous state, it
-might be important to highlight the `0` level, clearly separating
-increases (positive) from decreases (negative values), for which we can
-use the yellow color in this example. This task can be solved by
-defining a calbirated color ramp, that can be constructed with some
-value (`z`) to color (`color`) tiepoints in a `data.frame`:
+This solution is fine, if the goal of the heatmap is to visualize where
+the values are relative to the overall distribution, but not not where
+they are compared to some other value in the same dimension.
+
+For example, assuming that the values represent changes from a previous
+state, it might be important to highlight the `0` level, clearly
+separating increases (positive) from decreases (negative values), for
+which we can use the yellow color. This task can be solved by defining a
+calbirated color ramp, that can be constructed with some value (`z`) to
+color (`color`) tiepoints in a `data.frame`:
 
 ``` r
 df <- data.frame(
@@ -91,9 +138,11 @@ imagePlot(vals, breaks=ramp$breaks, col=ramp$col)
 
 ![](man/figures/fields_ramped.png)
 
-## Connecting to additional R extension
+This second figure shows the same data, but the red color now
+consistently indicates decreases over the visualized field.
 
-Using `fields` is just a single example, as many R packages rely on a
-similar `breaks` and `col` argument pair the explicit control of heatmap
-levels. These include (to mention a few), the `terra` and `sf` spatial
-packages.
+## Connecting to additional R extensions
+
+Using `fields` is just a single example. Many R packages rely on a
+similar `breaks` and `col` argument pair to explicitly control heatmap
+levels. These include (to mention a few), the `terra` and `sf` packages.

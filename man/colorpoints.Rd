@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotting.R
 \name{colorpoints}
 \alias{colorpoints}
-\title{Colored points}
+\title{Heatmap with colored points}
 \usage{
 colorpoints(
   x,
@@ -16,22 +16,49 @@ colorpoints(
 )
 }
 \arguments{
-\item{x}{The x argument of \code{points}.}
+\item{x}{The \code{x} argument of \code{points}.}
 
-\item{y}{The y argument of \code{points}.}
+\item{y}{The \code{y} argument of \code{points}.}
 
-\item{z}{Numeric, the variable to visualize using the colors.}
+\item{z}{\code{numeric}, the variable to visualize using the colors.}
 
-\item{ramp}{A calibramp object (including both breaks and colors).}
+\item{ramp}{A \code{calibramp}-class object (including both \code{breaks} and \code{colors}).}
 
-\item{col}{A vector of colors. Used only if ramp is not given.}
+\item{col}{A vector of colors. Used only if \code{ramp} is not given.}
 
-\item{breaks}{A vector of breaks. If given, this has to be one element longer than the length of col.}
+\item{breaks}{A vector of breaks. If given, this has to be one element longer than the length of \code{col}.}
 
-\item{legend}{A list of arguments passed to the ramplegend function. Set to \code{NULL} if you do not want to plot a legend.}
+\item{legend}{A list of arguments passed to the \code{\link{ramplegend}} function. Set to \code{NULL} if you do not want to plot a legend.}
 
-\item{...}{Arguments passed to \code{points}.}
+\item{...}{Arguments passed to the \code{\link[graphics]{points}} function.}
+}
+\value{
+The function has no return value.
 }
 \description{
-The function is a wrapper around the points function, controling the color of the points similar to \code{ggplot} but using S-style plotting.
+The function is a wrapper around the \code{\link[graphics]{points}} function, controlling the color of the points similar to \code{ggplot}, but using S-style plotting.
+If neither \code{ramp}, nor \code{col} or \code{breaks} are given, the function will default to using the internal \code{gradinv} palette with 256 levels evenly distributed from the minimum to the maximum of \code{z}.
+}
+\examples{
+# random points
+set.seed(1)
+x <- rnorm(5000) # x coord
+y <- rnorm(5000) # y coord
+dist <- sqrt(x^2+y^2) # distance from origin
+
+# default plotting
+plot(x,y, col=NA)
+colorpoints(x=x, y=y, z=dist)
+
+# custom color scheme
+levs<- data.frame(color=rainbow(5), z=c(0, 0.5,1, 3, 4.5))
+ramp <-expand(levs, n=256)
+
+# very customized (experiment with difference device sizes!)
+plot(x,y, col=NA, main="Distance to origin")
+colorpoints(x=x, y=y, z=dist,
+	col=paste0(ramp$col, "BB"),
+	breaks=ramp$breaks,
+	pch=16,
+	legend=list(x=3,y=0,cex=0.7, box.args=list(border=NA)))
 }
