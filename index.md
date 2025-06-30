@@ -29,7 +29,7 @@ library(rampage)
 library(terra)
 
 # load data
-etopo <- rast("")
+etopo <- rast("https://adamtkocsis.com/rampage/ETOPO1_ice_c_20110606_tiff_1.tif")
 
 # use a built-in dataset to get color to elevation bindings
 data(topos)
@@ -43,6 +43,8 @@ ramp <- expand(levs, n=500)
 # plotting
 plot(etopo, col=ramp$col, breaks=ramp$breaks, legend=FALSE)
 ```
+
+![](man/figures/etopo.png)
 
 ## Example 2: Heatmaps
 
@@ -75,26 +77,6 @@ for the plotting function: for instance, the default plotting with the
 library(fields)
 imagePlot(vals, col=rev(gradinv(100)))
 ```
-
-    ## Loading required package: spam
-
-    ## Spam version 2.10-0 (2023-10-23) is loaded.
-    ## Type 'help( Spam)' or 'demo( spam)' for a short introduction 
-    ## and overview of this package.
-    ## Help for individual functions is also obtained by adding the
-    ## suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
-
-    ## 
-    ## Attaching package: 'spam'
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     backsolve, forwardsolve
-
-    ## Loading required package: viridisLite
-
-    ## 
-    ## Try help(fields) to get started.
 
 ![](man/figures/fields_default.png)
 

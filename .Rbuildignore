@@ -16,5 +16,6 @@ vignettes/topographies.Rmd
 man/figures/hist.png
 man/figures/fields_default.png
 man/figures/fields_ramped.png
+man/figures/etopo.png
 docs/*
 pkgdown/*
