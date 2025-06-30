@@ -81,10 +81,34 @@
 <p>This package was written out of sheer anger. Many visulization tasks involve plotting heatmaps, where colors represent numeric values. There is a high number of extensions that have pre-defined components to make such representations with color palettes, but having precise control over the exact relationship between colors and values seems to be a constant technical nuissance. The <code>rampage</code> extension aims to make this control easier and allow users to construct and use color ramps based on explicit relationships between colors and values.</p>
 </div>
 <div class="section level2">
-<h2 id="example--rationale">Example / Rationale<a class="anchor" aria-label="anchor" href="#example--rationale"></a>
+<h2 id="example-1-topographies">Example 1: Topographies<a class="anchor" aria-label="anchor" href="#example-1-topographies"></a>
+</h2>
+<p>Consider this coarsened version of the <a href="https://www.ncei.noaa.gov/products/etopo-global-relief-model" class="external-link">ETOPO topographic relief model</a> (0.25x0.25 degree resolution of the cell-registerd version of ETOPO1), using the widely-used extension package <code>terra</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://adamtkocsis.com/rampage/">rampage</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/" class="external-link">terra</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># load data</span></span>
+<span><span class="va">etopo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="st">"https://adamtkocsis.com/rampage/ETOPO1_ice_c_20110606_tiff_1.tif"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># use a built-in dataset to get color to elevation bindings</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">topos</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># the levels</span></span>
+<span><span class="va">levs</span><span class="op">&lt;-</span> <span class="va">topos</span><span class="op">$</span><span class="va">etopo</span></span>
+<span></span>
+<span><span class="co"># expand and plot</span></span>
+<span><span class="va">ramp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/expand.html">expand</a></span><span class="op">(</span><span class="va">levs</span>, n<span class="op">=</span><span class="fl">500</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># plotting</span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">etopo</span>, col<span class="op">=</span><span class="va">ramp</span><span class="op">$</span><span class="va">col</span>, breaks<span class="op">=</span><span class="va">ramp</span><span class="op">$</span><span class="va">breaks</span>, legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/etopo.png"></p>
+</div>
+<div class="section level2">
+<h2 id="example-2-heatmaps">Example 2: Heatmaps<a class="anchor" aria-label="anchor" href="#example-2-heatmaps"></a>
 </h2>
 <p>The visual message of a heatmap-figure is highly influenced by the dominance of specific colors in the heatmap. For instance, let’s consider these example data that come form a slightly shifted (non-zero mean) Gaussian distribution:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://adamtkocsis.com/rampage/">rampage</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
@@ -92,39 +116,20 @@
 <span><span class="va">vals</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean<span class="op">=</span><span class="op">-</span><span class="fl">0.7</span>, sd<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># the histogram of the values</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">vals</span>, breaks<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">vals</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">vals</span>, breaks<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v<span class="op">=</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/summarize-generics.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">vals</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/hist.png"></p>
 <p>This small set of data is wrapped in a matrix to give the values some positional context, similar to spatial data. When these data are visualized, the automatic ramping will use the range of values provided for the plotting function: for instance, the default plotting with the <code>fields</code> package:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dnychka/fieldsRPackage" class="external-link">fields</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/imagePlot.html" class="external-link">imagePlot</a></span><span class="op">(</span><span class="va">vals</span>, col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="reference/ramps.html">gradinv</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="do">## Loading required package: spam</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="do">## Spam version 2.10-0 (2023-10-23) is loaded.</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="do">## Type 'help( Spam)' or 'demo( spam)' for a short introduction </span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="do">## and overview of this package.</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="do">## Help for individual functions is also obtained by adding the</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="do">## suffix '.spam' to the function name, e.g. 'help( chol.spam)'.</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="do">## Attaching package: 'spam'</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="do">## The following objects are masked from 'package:base':</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="do">##     backsolve, forwardsolve</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="do">## Loading required package: viridisLite</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="do">## Try help(fields) to get started.</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/imagePlot.html" class="external-link">imagePlot</a></span><span class="op">(</span><span class="va">vals</span>, col<span class="op">=</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/flip.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="reference/ramps.html">gradinv</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/fields_default.png"></p>
 <p>This solution is fine, if the goal of the heatmap is to visualize where the values are relative to the overall distribution, but not not where they are compared to some other value in the same dimension.</p>
 <p>For example, assuming that the values represent changes from a previous state, it might be important to highlight the <code>0</code> level, clearly separating increases (positive) from decreases (negative values), for which we can use the yellow color. This task can be solved by defining a calbirated color ramp, that can be constructed with some value (<code>z</code>) to color (<code>color</code>) tiepoints in a <code>data.frame</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  z<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>,</span>
-<span>  color<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="reference/ramps.html">gradinv</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span>  color<span class="op">=</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/flip.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="reference/ramps.html">gradinv</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">df</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="do">##      z   color</span></span>

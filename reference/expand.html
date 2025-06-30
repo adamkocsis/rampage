@@ -66,7 +66,7 @@
 
 
 <dt id="arg-z">z<a class="anchor" aria-label="anchor" href="#arg-z"></a></dt>
-<dd><p>A <code>chraracter</code> value, the column name of the values in <code>x</code>, defaults to <code>"z"</code>. Alternatively, a <code>numeric</code> vector of color values (must have the same length as <code>color</code>.</p></dd>
+<dd><p>A <code>character</code> value, the column name of the values in <code>x</code>, defaults to <code>"z"</code>. Alternatively, a <code>numeric</code> vector of color values (must have the same length as <code>color</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -80,7 +80,7 @@
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The function creates objects of the S3 class <code>calibramp</code>. The <code>calibramp</code>-class lists have three elements: <code>col</code> hexadecimal color values, <code>mid</code>: z-values of midpoints (one for every color), and <code>breaks</code>: separator borders between color values.
-Color interpolation will be executed linearly, the order of the values will be forced to ascending, the values in <code>mid</code> will be halfway between breaks.</p>
+Color interpolation will be executed linearly, using <code>colorRampPalette</code>, the order of the values will be forced to ascending, the values in <code>mid</code> will be halfway between breaks.</p>
     </div>
 
     <div class="section level2">
@@ -88,10 +88,9 @@ Color interpolation will be executed linearly, the order of the values will be f
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://adamtkocsis.com/rampage/">rampage</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">topos</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ramp</span> <span class="op">&lt;-</span> <span class="fu">expand</span><span class="op">(</span><span class="va">topos</span><span class="op">$</span><span class="va">havanna2</span>, n<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="cn">NULL</span>, <span class="cn">NULL</span>, xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">8000</span>,<span class="fl">5000</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/rect.html" class="external-link">rect</a></span><span class="op">(</span>xleft<span class="op">=</span><span class="op">-</span><span class="fl">2</span>, xright<span class="op">=</span><span class="fl">2</span>, ybottom<span class="op">=</span><span class="va">ramp</span><span class="op">$</span><span class="va">breaks</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>, ytop<span class="op">=</span><span class="va">ramp</span><span class="op">$</span><span class="va">breaks</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">ramp</span><span class="op">$</span><span class="va">breaks</span><span class="op">)</span><span class="op">]</span>,</span></span>
-<span class="r-in"><span>col<span class="op">=</span><span class="va">ramp</span><span class="op">$</span><span class="va">col</span>, border<span class="op">=</span><span class="cn">NA</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ramp</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="expand-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
