@@ -170,20 +170,20 @@ etopo
 
 This can be visualized with the default viridis palette using the plot function:
 
-```{r, fig.height=3, fig.width=8}
+```{r, fig.height=4, fig.width=8}
 plot(etopo)
 ```
 
 We can get this to work with the our topographic ramp, by referring to the `col` abd `breaks` arguments of the plot, as we did before.
 
-```{r, fig.height=3, fig.width=8}
+```{r, fig.height=4, fig.width=8}
 plot(etopo, col=topoRamp$col, breaks=topoRamp$breaks)
 ```
 
-Note that by default this will use a categorical legend, which is not ideal. Setting `type="continuous"` will reposition the color values, making it difficult to assert the correctness of the legend-to-values relationship. If a legend is desired, it can be plotted iwth the `ramplegend` function: 
+Note that by default this will use a categorical legend, which is not ideal. Setting `type="continuous"` will reposition the color values, making it difficult to assert the correctness of the legend-to-values relationship. If a legend is desired, it can be plotted with the `ramplegend` function: 
 
 
-```{r, fig.height=3, fig.width=8}
+```{r, fig.height=4, fig.width=8}
 plot(etopo, col=topoRamp$col, breaks=topoRamp$breaks, legend=FALSE)
 ramplegend(col=topoRamp$col,breaks=topoRamp$breaks, cex=0.3, x=-160, y=20)
 ```

@@ -25,7 +25,7 @@ Create ramp palettes from fixed color positions.
 }
 \details{
 The function creates objects of the S3 class \code{calibramp}. The \code{calibramp}-class lists have three elements: \code{col} hexadecimal color values, \code{mid}: z-values of midpoints (one for every color), and \code{breaks}: separator borders between color values.
-Color interpolation will be executed linearly, using \code{\link[graphics]{colorRampPalette}}, the order of the values will be forced to ascending, the values in \code{mid} will be halfway between breaks.
+Color interpolation will be executed linearly, using \code{\link[grDevices]{colorRampPalette}}, the order of the values will be forced to ascending, the values in \code{mid} will be halfway between breaks.
 }
 \examples{
 library(rampage)

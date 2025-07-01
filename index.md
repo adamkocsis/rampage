@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/devel%20version-0.2.0-green.svg)](https://github.com/adamkocsis/rampage)
 [![](https://www.r-pkg.org/badges/version/rampage?color=blue)](https://cran.r-project.org/package=rampage)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/rampage?color=yellow)](https://cran.r-project.org/package=rampage)
-[![](https://img.shields.io/badge/doi-10.5281/zenodo.10546420.-blue.svg)](https://doi.org/10.5281/zenodo.10546420.)
+[![](https://img.shields.io/badge/doi-10.5281/zenodo.10546421.-blue.svg)](https://doi.org/10.5281/zenodo.10546421.)
 
 ## Stretchable Color Ramps
 

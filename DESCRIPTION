@@ -10,7 +10,7 @@ Authors@R: c(
 Maintainer: Adam T. Kocsis <adam.t.kocsis@gmail.com>
 Description: Value-calibrated color ramps can be useful to emphasize patterns in complex-distributed data. Colors can be tied to specific values (tiepoints), and the association can then be expanded into full color ramps, that explicitly record the relationship between colors and the values they represent. Such ramps can be used in a variety of cases when heatmap-type plots are necessary, including the visualization of vector and raster spatial data, such as topographies.
 License: CC BY 4.0
-Date: 2025-06-26
+Date: 2025-06-30
 URL: https://adamtkocsis.com/rampage/
 BugReports: https://github.com/adamkocsis/rampage/issues
 Encoding: UTF-8
