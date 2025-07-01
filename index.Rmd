@@ -13,23 +13,23 @@ library(badger)
 `r badge_devel("adamkocsis/rampage", "green")`
 `r badge_cran_release("rampage", "blue")`
 `r badge_cran_download("rampage", "grand-total", "yellow")`
-`r badger::badge_doi(doi = "10.5281/zenodo.10546420.", color = "blue")` 
+`r badger::badge_doi(doi = "10.5281/zenodo.10546421.", color = "blue")` 
 
 ## Stretchable Color Ramps 
 
-This package was written out of sheer anger. Many visulization tasks involve plotting heatmaps, where colors represent numeric values. There is a high number of extensions that have pre-defined components to make such representations with color palettes, but having precise control over the exact relationship between colors and values seems to be a constant technical nuissance. The `rampage` extension aims to make this control easier and allow users to construct and use color ramps based on explicit relationships between colors and values.  
+This package was written out of sheer anger. Many visulization tasks involve plotting heatmaps, where colors represent numeric values. There is a high number of extensions that have pre-defined components to make such representations with color palettes, but having precise control over the exact relationship between colors and values is a constant technical nuissance. The `rampage` extension aims to make this control easier and allow users to construct and use color ramps based on explicit relationships between colors and values.  
 
 ## Example 1: Topographies
 
-Consider this coarsened version of the [ETOPO topographic relief model](https://www.ncei.noaa.gov/products/etopo-global-relief-model) (0.25x0.25 degree resolution of the cell-registerd version of ETOPO1), using the widely-used extension package `terra`. 
+Consider this coarsened version of the [ETOPO topographic relief model](https://www.ncei.noaa.gov/products/etopo-global-relief-model) (0.25x0.25 degree resolution of the cell-registered version of ETOPO1), using the widely-used extension package `terra`. 
 
 
 ```{r, echo=FALSE, eval=TRUE, include=FALSE}
 library(rampage)
 library(terra)
 
-# load data
-etopo <- rast("https://adamtkocsis.com/rampage/ETOPO1_ice_c_20110606_tiff_1.tif")
+# load data (example on the package GitHub)
+etopo <- rast("https://adamtkocsis.com/rampage/etopo1_Ice_c_gdal_0.1.nc")
 
 # use a built-in dataset to get color to elevation bindings
 data(topos)
@@ -41,7 +41,7 @@ levs<- topos$etopo
 ramp <- expand(levs, n=500)
 
 # plotting
-png("man/figures/etopo.png", width=1200,height=600)
+png("man/figures/etopo.png", width=2000,height=1000)
 	plot(etopo, col=ramp$col, breaks=ramp$breaks, legend=FALSE)
 dev.off()
 ```
@@ -51,7 +51,7 @@ library(rampage)
 library(terra)
 
 # load data
-etopo <- rast("https://adamtkocsis.com/rampage/ETOPO1_ice_c_20110606_tiff_1.tif")
+etopo <- rast("https://adamtkocsis.com/rampage/etopo1_Ice_c_gdal_0.1.nc")
 
 # use a built-in dataset to get color to elevation bindings
 data(topos)

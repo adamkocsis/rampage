@@ -12,16 +12,16 @@ This package was written out of sheer anger. Many visulization tasks
 involve plotting heatmaps, where colors represent numeric values. There
 is a high number of extensions that have pre-defined components to make
 such representations with color palettes, but having precise control
-over the exact relationship between colors and values seems to be a
-constant technical nuissance. The `rampage` extension aims to make this
-control easier and allow users to construct and use color ramps based on
+over the exact relationship between colors and values is a constant
+technical nuissance. The `rampage` extension aims to make this control
+easier and allow users to construct and use color ramps based on
 explicit relationships between colors and values.
 
 ## Example 1: Topographies
 
 Consider this coarsened version of the [ETOPO topographic relief
 model](https://www.ncei.noaa.gov/products/etopo-global-relief-model)
-(0.25x0.25 degree resolution of the cell-registerd version of ETOPO1),
+(0.25x0.25 degree resolution of the cell-registered version of ETOPO1),
 using the widely-used extension package `terra`.
 
 ``` r
@@ -29,7 +29,7 @@ library(rampage)
 library(terra)
 
 # load data
-etopo <- rast("https://adamtkocsis.com/rampage/ETOPO1_ice_c_20110606_tiff_1.tif")
+etopo <- rast("https://adamtkocsis.com/rampage/etopo1_Ice_c_gdal_0.1.nc")
 
 # use a built-in dataset to get color to elevation bindings
 data(topos)
@@ -77,6 +77,33 @@ for the plotting function: for instance, the default plotting with the
 library(fields)
 imagePlot(vals, col=rev(gradinv(100)))
 ```
+
+    ## Loading required package: spam
+
+    ## Spam version 2.10-0 (2023-10-23) is loaded.
+    ## Type 'help( Spam)' or 'demo( spam)' for a short introduction 
+    ## and overview of this package.
+    ## Help for individual functions is also obtained by adding the
+    ## suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
+
+    ## 
+    ## Attaching package: 'spam'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     backsolve, forwardsolve
+
+    ## Loading required package: viridisLite
+
+    ## 
+    ## Try help(fields) to get started.
+
+    ## 
+    ## Attaching package: 'fields'
+
+    ## The following object is masked from 'package:terra':
+    ## 
+    ##     describe
 
 ![](man/figures/fields_default.png)
 

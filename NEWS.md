@@ -1,12 +1,13 @@
 # Change log of the R package 'rampage'
 
-# rampage 0.2.0 - 2025-06-26
+# rampage 0.2.0 - 2025-06-30
 
 ### Added
 
 - The `colorpoints` function and `ramplegend` functions for the efficient visualization of ramps.
 - The `paleomap` data object.
-- Finished unit testing suite and package websiste.
+- The `etopo` and `demcmap` `data.frames` to `topos`.
+- Finished unit testing suite and package website.
 
 ### Fixed
 

@@ -1,5 +1,5 @@
 
-# rampage<img src="man/figures/logo.png" align="right" />
+# rampage<img src="man/figures/logo.png" align="right" width="350" />
 
 Calibrated Color Ramps
 
