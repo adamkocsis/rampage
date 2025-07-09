@@ -2,7 +2,7 @@
 output: rmarkdown::github_document
 ---
 
-# rampage<img src="man/figures/logo.png" align="right" width="350" />
+# rampage<img src="man/figures/logo.png" align="right" width="200" />
 
 Calibrated Color Ramps
 
@@ -11,10 +11,10 @@ This package was written out of sheer anger. Lots of visulization tasks involve 
 See the webpage of the package for more info and tutorials: https://adamtkocsis.com/rampage/
 
 
-# Installing
+**Installation instructions** can be found [here](https://adamtkocsis.com/rampage/articles/installation.html).
 
-```{R, eval=FALSE}
-devtools::install_github("adamkocsis/rampage")
-```
+## Change log
 
+See changes at 
 
+https://github.com/adamkocsis/rampage/blob/main/NEWS.md

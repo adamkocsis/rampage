@@ -1,5 +1,5 @@
 
-# rampage<img src="man/figures/logo.png" align="right" width="350" />
+# rampage<img src="man/figures/logo.png" align="right" width="200" />
 
 Calibrated Color Ramps
 
@@ -15,8 +15,11 @@ explicit relationships between colors and values.
 See the webpage of the package for more info and tutorials:
 <https://adamtkocsis.com/rampage/>
 
-# Installing
+**Installation instructions** can be found
+[here](https://adamtkocsis.com/rampage/articles/installation.html).
 
-``` r
-devtools::install_github("adamkocsis/rampage")
-```
+## Change log
+
+See changes at
+
+<https://github.com/adamkocsis/rampage/blob/main/NEWS.md>

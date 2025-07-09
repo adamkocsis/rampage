@@ -34,10 +34,10 @@ etopo <- rast("https://adamtkocsis.com/rampage/etopo1_Ice_c_gdal_0.1.nc")
 # use a built-in dataset to get color to elevation bindings
 data(topos)
 
-# the levels
+# the levels: a data frame with two columns
 levs<- topos$etopo
 
-# expand and plot
+# expand to a full ramp 
 ramp <- expand(levs, n=500)
 
 # plotting
@@ -78,33 +78,6 @@ library(fields)
 imagePlot(vals, col=rev(gradinv(100)))
 ```
 
-    ## Loading required package: spam
-
-    ## Spam version 2.10-0 (2023-10-23) is loaded.
-    ## Type 'help( Spam)' or 'demo( spam)' for a short introduction 
-    ## and overview of this package.
-    ## Help for individual functions is also obtained by adding the
-    ## suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
-
-    ## 
-    ## Attaching package: 'spam'
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     backsolve, forwardsolve
-
-    ## Loading required package: viridisLite
-
-    ## 
-    ## Try help(fields) to get started.
-
-    ## 
-    ## Attaching package: 'fields'
-
-    ## The following object is masked from 'package:terra':
-    ## 
-    ##     describe
-
 ![](man/figures/fields_default.png)
 
 This solution is fine, if the goal of the heatmap is to visualize where
@@ -133,9 +106,9 @@ df
     ## 4  0.5 #76ACCE
     ## 5  2.0 #33358A
 
-This `data.frame` can than be expanded to a full, calibrated color ramp
-with the `expand` function. The resulting object can be used to control
-`fields::imagePlot` via its `breaks` argument:
+This `data.frame` can then be expanded to a full, calibrated color ramp
+with the `rampage::expand` function. The resulting object can be used to
+control `fields::imagePlot` via its `breaks` argument:
 
 ``` r
 # calibrated color ramp

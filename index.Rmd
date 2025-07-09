@@ -56,10 +56,10 @@ etopo <- rast("https://adamtkocsis.com/rampage/etopo1_Ice_c_gdal_0.1.nc")
 # use a built-in dataset to get color to elevation bindings
 data(topos)
 
-# the levels
+# the levels: a data frame with two columns
 levs<- topos$etopo
 
-# expand and plot
+# expand to a full ramp 
 ramp <- expand(levs, n=500)
 
 # plotting
@@ -129,7 +129,7 @@ df <- data.frame(
 df
 ```
 
-This `data.frame` can then be expanded to a full, calibrated color ramp with the `expand` function. The resulting object can be used to control `fields::imagePlot` via its `breaks` argument:
+This `data.frame` can then be expanded to a full, calibrated color ramp with the `rampage::expand` function. The resulting object can be used to control `fields::imagePlot` via its `breaks` argument:
 
 ```{r, echo=TRUE, eval=FALSE}
 # calibrated color ramp

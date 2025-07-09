@@ -16,9 +16,19 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Alternative methods
 
-#### Development version 
+## Stable version from the CRAN
+
+
+The stable version of the package is available on [CRAN servers](https://cran.r-project.org/package=rampage), which means that you can install it with the regular `install.packages()` function.
+
+```{r cran, eval=FALSE}
+install.packages("rampage")
+```
+
+If for some reason, the installlation from CRAN fails, you might need to use an alternative method, such as `devtools::install_github("adamkocsis/rampage@main")`
+
+## Development version 
 
 If you encounter technical problems with the package that are not described anywhere, you might want to take a look at the [development version](https://github.com/adamkocsis/rampage/tree/devel).
 
@@ -36,5 +46,5 @@ R CMD INSTALL rampage
 - *If the R packages that `rampage` depend on are not installed, you have to install them manually, or you will get an error.*
 </div>
 
- You can also try `devtools::install_github("adamkocsis/rampage")`
 
+If for some reason, the installlation from CRAN fails, you might need to use an alternative method, such as `devtools::install_github("adamkocsis/rampage@devel")`
