@@ -17,8 +17,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Calibrated Color Ramps">
-<meta name="description" content="Value-calibrated color ramps can be useful to emphasize patterns in complex-distributed data. Colors can be tied to specific values (tiepoints), and the association can then be expanded into full color ramps, that explicitly record the relationship between colors and the values they represent. Such ramps can be used in a variety of cases when heatmap-type plots are necessary, including the visualization of vector and raster spatial data, such as topographies.">
-<meta property="og:description" content="Value-calibrated color ramps can be useful to emphasize patterns in complex-distributed data. Colors can be tied to specific values (tiepoints), and the association can then be expanded into full color ramps, that explicitly record the relationship between colors and the values they represent. Such ramps can be used in a variety of cases when heatmap-type plots are necessary, including the visualization of vector and raster spatial data, such as topographies.">
+<meta name="description" content="Value-calibrated color ramps can be useful to emphasize patterns in data from complex distributions. Colors can be tied to specific values, and the association can be expanded into full color ramps that also include the relationship between colors and values. Such ramps can be used in a variety of cases when heatmap-type plots are necessary, including the visualization of vector and raster spatial data, such as topographies.">
+<meta property="og:description" content="Value-calibrated color ramps can be useful to emphasize patterns in data from complex distributions. Colors can be tied to specific values, and the association can be expanded into full color ramps that also include the relationship between colors and values. Such ramps can be used in a variety of cases when heatmap-type plots are necessary, including the visualization of vector and raster spatial data, such as topographies.">
 <meta property="og:image" content="https://adamtkocsis.com/rampage/reference/figures/logo.png">
 <meta property="og:image:alt" content="The rampage sticker.">
 <meta name="twitter:card" content="summary_large_image">
@@ -94,10 +94,10 @@
 <span><span class="co"># use a built-in dataset to get color to elevation bindings</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">topos</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># the levels</span></span>
+<span><span class="co"># the levels: a data frame with two columns</span></span>
 <span><span class="va">levs</span><span class="op">&lt;-</span> <span class="va">topos</span><span class="op">$</span><span class="va">etopo</span></span>
 <span></span>
-<span><span class="co"># expand and plot</span></span>
+<span><span class="co"># expand to a full ramp </span></span>
 <span><span class="va">ramp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/expand.html">expand</a></span><span class="op">(</span><span class="va">levs</span>, n<span class="op">=</span><span class="fl">500</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># plotting</span></span>
@@ -123,49 +123,23 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dnychka/fieldsRPackage" class="external-link">fields</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/imagePlot.html" class="external-link">imagePlot</a></span><span class="op">(</span><span class="va">vals</span>, col<span class="op">=</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/flip.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="reference/ramps.html">gradinv</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## Loading required package: spam</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="do">## Spam version 2.10-0 (2023-10-23) is loaded.</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="do">## Type 'help( Spam)' or 'demo( spam)' for a short introduction </span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="do">## and overview of this package.</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="do">## Help for individual functions is also obtained by adding the</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="do">## suffix '.spam' to the function name, e.g. 'help( chol.spam)'.</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="do">## Attaching package: 'spam'</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="do">## The following objects are masked from 'package:base':</span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="do">##     backsolve, forwardsolve</span></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="do">## Loading required package: viridisLite</span></span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="do">## Try help(fields) to get started.</span></span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="do">## Attaching package: 'fields'</span></span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="do">## The following object is masked from 'package:terra':</span></span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="do">##     describe</span></span></code></pre></div>
 <p><img src="reference/figures/fields_default.png"></p>
 <p>This solution is fine, if the goal of the heatmap is to visualize where the values are relative to the overall distribution, but not not where they are compared to some other value in the same dimension.</p>
 <p>For example, assuming that the values represent changes from a previous state, it might be important to highlight the <code>0</code> level, clearly separating increases (positive) from decreases (negative values), for which we can use the yellow color. This task can be solved by defining a calbirated color ramp, that can be constructed with some value (<code>z</code>) to color (<code>color</code>) tiepoints in a <code>data.frame</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  z<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>  color<span class="op">=</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/flip.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="reference/ramps.html">gradinv</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">df</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="do">##      z   color</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="do">## 1 -2.0 #690720</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="do">## 2 -0.5 #E22C28</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="do">## 3  0.0 #FFF99A</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="do">## 4  0.5 #76ACCE</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="do">## 5  2.0 #33358A</span></span></code></pre></div>
-<p>This <code>data.frame</code> can than be expanded to a full, calibrated color ramp with the <code>expand</code> function. The resulting object can be used to control <code><a href="https://rdrr.io/pkg/fields/man/imagePlot.html" class="external-link">fields::imagePlot</a></code> via its <code>breaks</code> argument:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="do">##      z   color</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="do">## 1 -2.0 #690720</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="do">## 2 -0.5 #E22C28</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="do">## 3  0.0 #FFF99A</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="do">## 4  0.5 #76ACCE</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="do">## 5  2.0 #33358A</span></span></code></pre></div>
+<p>This <code>data.frame</code> can then be expanded to a full, calibrated color ramp with the <code><a href="reference/expand.html">rampage::expand</a></code> function. The resulting object can be used to control <code><a href="https://rdrr.io/pkg/fields/man/imagePlot.html" class="external-link">fields::imagePlot</a></code> via its <code>breaks</code> argument:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># calibrated color ramp</span></span>
 <span><span class="va">ramp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/expand.html">expand</a></span><span class="op">(</span><span class="va">df</span>, n<span class="op">=</span><span class="fl">100</span><span class="op">)</span> <span class="co"># check: str(ramp)</span></span>
 <span></span>
@@ -183,6 +157,7 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=rampage" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/adamkocsis/rampage/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/adamkocsis/rampage/issues" class="external-link">Report a bug</a></li>
 </ul>

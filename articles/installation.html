@@ -86,11 +86,33 @@
     
     
 <div class="section level2">
-<h2 id="alternative-methods">Alternative methods<a class="anchor" aria-label="anchor" href="#alternative-methods"></a>
+<h2 id="stable-version-from-the-cran">Stable version from the CRAN<a class="anchor" aria-label="anchor" href="#stable-version-from-the-cran"></a>
 </h2>
-<div class="section level4">
-<h4 id="development-version">Development version<a class="anchor" aria-label="anchor" href="#development-version"></a>
-</h4>
+<p>The stable version of the package is available on <a href="https://cran.r-project.org/package=rampage" class="external-link">CRAN servers</a>,
+which means that you can install it with the regular
+<code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code> function.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rampage"</span><span class="op">)</span></span></code></pre></div>
+<p>If for some reason, the installlation from CRAN fails, you might need
+to use an alternative method, such as
+<code>devtools::install_github("adamkocsis/rampage@main")</code></p>
+</div>
+<div class="section level2">
+<h2 id="stable-version-from-zenodo-source">Stable version from Zenodo (source)<a class="anchor" aria-label="anchor" href="#stable-version-from-zenodo-source"></a>
+</h2>
+<p>For the sake of completeness and simplicity, the sources of the
+stable version are also available on GitHub. The
+<code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code> function can be used to install this
+from source - but you will have to install dependencies of the
+package.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
+<span>    <span class="st">"https://zenodo.org/records/15847239/files/rampage_0.2.0.tar.gz?download=1"</span>, </span>
+<span>    repos<span class="op">=</span><span class="cn">NULL</span>, type<span class="op">=</span><span class="st">"source"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="development-version">Development version<a class="anchor" aria-label="anchor" href="#development-version"></a>
+</h2>
 <p>If you encounter technical problems with the package that are not
 described anywhere, you might want to take a look at the <a href="https://github.com/adamkocsis/rampage/tree/devel" class="external-link">development
 version</a>.</p>
@@ -113,9 +135,9 @@ installed, you have to install them manually, or you will get an
 error.</em></li>
 </ul>
 </div>
-<p>You can also try
-<code>devtools::install_github("adamkocsis/rampage")</code></p>
-</div>
+<p>If for some reason, the installlation from CRAN fails, you might need
+to use an alternative method, such as
+<code>devtools::install_github("adamkocsis/rampage@devel")</code></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
