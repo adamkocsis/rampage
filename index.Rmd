@@ -129,7 +129,7 @@ df <- data.frame(
 df
 ```
 
-This `data.frame` can than be expanded to a full, calibrated color ramp with the `expand` function. The resulting object can be used to control `fields::imagePlot` via its `breaks` argument:
+This `data.frame` can then be expanded to a full, calibrated color ramp with the `expand` function. The resulting object can be used to control `fields::imagePlot` via its `breaks` argument:
 
 ```{r, echo=TRUE, eval=FALSE}
 # calibrated color ramp
