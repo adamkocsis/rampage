@@ -28,6 +28,17 @@ install.packages("rampage")
 
 If for some reason, the installlation from CRAN fails, you might need to use an alternative method, such as `devtools::install_github("adamkocsis/rampage@main")`
 
+
+## Stable version from Zenodo (source)
+
+For the sake of completeness and simplicity, the sources of the stable version are also available on GitHub. The `install.packages()` function can be used to install this from source - but you will have to install dependencies of the package.
+
+```{r stable, eval=FALSE}
+install.packages(
+	"https://zenodo.org/records/15847239/files/rampage_0.2.0.tar.gz?download=1", 
+	repos=NULL, type="source")
+```
+
 ## Development version 
 
 If you encounter technical problems with the package that are not described anywhere, you might want to take a look at the [development version](https://github.com/adamkocsis/rampage/tree/devel).

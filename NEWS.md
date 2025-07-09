@@ -2,6 +2,8 @@
 
 # rampage 0.2.0 - 2025-06-30
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15847239.svg)](https://doi.org/10.5281/zenodo.15847239) 
+
 ### Added
 
 - The `colorpoints` function and `ramplegend` functions for the efficient visualization of ramps.
@@ -11,7 +13,7 @@
 
 ### Fixed
 
-- Load of documentation issues.
+- Loads of documentation issues.
 
 ### Known issues/missing
 
