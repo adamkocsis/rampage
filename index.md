@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/devel%20version-0.2.0-green.svg)](https://github.com/adamkocsis/rampage)
 [![](https://www.r-pkg.org/badges/version/rampage?color=blue)](https://cran.r-project.org/package=rampage)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/rampage?color=yellow)](https://cran.r-project.org/package=rampage)
-[![](https://img.shields.io/badge/doi-10.5281/zenodo.10546421.-blue.svg)](https://doi.org/10.5281/zenodo.10546421.)
+[![](https://img.shields.io/badge/doi-10.5281/zenodo.10546421-blue.svg)](https://doi.org/10.5281/zenodo.10546421)
 
 ## Stretchable Color Ramps
 
@@ -77,6 +77,33 @@ for the plotting function: for instance, the default plotting with the
 library(fields)
 imagePlot(vals, col=rev(gradinv(100)))
 ```
+
+    ## Loading required package: spam
+
+    ## Spam version 2.10-0 (2023-10-23) is loaded.
+    ## Type 'help( Spam)' or 'demo( spam)' for a short introduction 
+    ## and overview of this package.
+    ## Help for individual functions is also obtained by adding the
+    ## suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
+
+    ## 
+    ## Attaching package: 'spam'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     backsolve, forwardsolve
+
+    ## Loading required package: viridisLite
+
+    ## 
+    ## Try help(fields) to get started.
+
+    ## 
+    ## Attaching package: 'fields'
+
+    ## The following object is masked from 'package:terra':
+    ## 
+    ##     describe
 
 ![](man/figures/fields_default.png)
 

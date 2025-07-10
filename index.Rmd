@@ -13,7 +13,7 @@ library(badger)
 `r badge_devel("adamkocsis/rampage", "green")`
 `r badge_cran_release("rampage", "blue")`
 `r badge_cran_download("rampage", "grand-total", "yellow")`
-`r badger::badge_doi(doi = "10.5281/zenodo.10546421.", color = "blue")` 
+`r badger::badge_doi(doi = "10.5281/zenodo.10546421", color = "blue")` 
 
 ## Stretchable Color Ramps 
 
