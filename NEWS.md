@@ -1,5 +1,11 @@
 # Change log of the R package 'rampage'
 
+# rampage 0.2.1 - 2026-06-03
+
+### Added
+
+- The `ptolemy` theme to the `topos` data object.
+
 # rampage 0.2.0 - 2025-06-30
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15847239.svg)](https://doi.org/10.5281/zenodo.15847239) 
