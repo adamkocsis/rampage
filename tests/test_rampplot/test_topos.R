@@ -81,6 +81,14 @@ expr <- expression(plot(ramp))
 
 test_plot(expr, path="zagreb_50.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
 
+########################################----------------------------------------
+# Ptolemy
+# test expansion
+expect_silent(ramp <- expand(topos$ptolemy, n= 256))
+expr <- expression(plot(ramp))
+
+test_plot(expr, path="ptolemy_256.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+
 ################################################################################
 # The same with breaks
 ########################################----------------------------------------
@@ -115,3 +123,11 @@ expect_silent(ramp <- expand(topos$zagreb, n= 50))
 expr <- expression(plot(ramp, breaks=TRUE))
 
 test_plot(expr, path="zagreb_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+
+########################################----------------------------------------
+# Ptolemy-breaks
+# test expansion
+expect_silent(ramp <- expand(topos$ptolemy, n= 50))
+expr <- expression(plot(ramp, breaks=TRUE))
+
+test_plot(expr, path="ptolemy_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
