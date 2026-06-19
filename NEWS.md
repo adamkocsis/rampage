@@ -1,9 +1,10 @@
 # Change log of the R package 'rampage'
 
-# rampage 0.2.1 - 2026-06-03
+# rampage 0.2.1 - 2026-06-19
 
 ### Added
 
+- The `sandy` theme to the `bathymetry` data object.
 - The `ptolemy` theme to the `topos` data object.
 
 # rampage 0.2.0 - 2025-06-30

@@ -1,7 +1,7 @@
 
 # rampage<img src="man/figures/logo.png" align="right" />
 
-[![](https://img.shields.io/badge/devel%20version-0.2.0-green.svg)](https://github.com/adamkocsis/rampage)
+[![](https://img.shields.io/badge/devel%20version-0.2.1-green.svg)](https://github.com/adamkocsis/rampage)
 [![](https://www.r-pkg.org/badges/version/rampage?color=blue)](https://cran.r-project.org/package=rampage)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/rampage?color=yellow)](https://cran.r-project.org/package=rampage)
 [![](https://img.shields.io/badge/doi-10.5281/zenodo.10546421-blue.svg)](https://doi.org/10.5281/zenodo.10546421)

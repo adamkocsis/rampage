@@ -49,6 +49,22 @@ gradinv <- grDevices::colorRampPalette(c("#33358a", "#76acce", "#fff99a",  "#e22
 #' plot(jakExp)
 "topos"
 
+#' Bathymetric color palettes with tiepoints
+#'
+#' The object contains \code{data.frame}-class objects to be used with the \code{\link{expand}} function to produce full calibrated color ramps.
+#'
+#' @format A \code{list} with 1 \code{data.frame} elements:
+#' \describe{
+#' \item{\code{sandy}}{: A color ramp resembling a sandy beach. }
+#' }
+#' @usage data(bathymetry)
+#'
+#' @examples
+#' data(bathymetry)
+#' sandyExp <- expand(bathymetry$sandy, n=200)
+#' plot(sandyExp)
+"bathymetry"
+
 
 #' Topographic gradient map color map of the PALEOMAP project
 #'
