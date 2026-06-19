@@ -37,10 +37,11 @@ limits <- run_test_dir("rampage/tests/test_limit")
 trimming <- run_test_dir("rampage/tests/test_trimramp")
 expansion <- run_test_dir("rampage/tests/test_expand")
 
-# graphical
+# graphical - NOTE: this has to be compared on he same computer,
+# because different R instances create different images!
+legend <- run_test_dir("rampage/tests/test_ramplegend")
 rampplot <- run_test_dir("rampage/tests/test_rampplot")
 coloredPoints <- run_test_dir("rampage/tests/test_colorpoints")
-legend <- run_test_dir("rampage/tests/test_ramplegend")
 
 # Finish
 stopCluster(cl)

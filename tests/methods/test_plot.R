@@ -58,8 +58,7 @@ test_plot <- function(expr, path, dir=NULL, temp=tempdir(), plotter=svg, height=
 			reference <- unname(tools::md5sum(path))
 			temporary <- unname(tools::md5sum(tempFile))
 
-			# test the image
-			tinytest::expect_equal(reference, temporary)
+			return(reference==temporary)
 
 		}
 

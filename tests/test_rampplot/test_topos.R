@@ -19,7 +19,8 @@ data(topos)
 expect_silent(ramp <- expand(topos$havanna2, n= 256))
 expr <- expression(plot(ramp))
 
-test_plot(expr, path="havanna_256.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="havanna_256.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 
 ########################################----------------------------------------
@@ -28,7 +29,8 @@ test_plot(expr, path="havanna_256.png", dir=dir, width=500, height=1000, update=
 expect_silent(ramp <- expand(topos$jakarta, n= 256))
 expr <- expression(plot(ramp))
 
-test_plot(expr, path="jakarta_256.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="jakarta_256.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 ########################################----------------------------------------
 # Tokio1
@@ -36,7 +38,8 @@ test_plot(expr, path="jakarta_256.png", dir=dir, width=500, height=1000, update=
 expect_silent(ramp <- expand(topos$tokio1, n= 256))
 expr <- expression(plot(ramp))
 
-test_plot(expr, path="tokio_256.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="tokio_256.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 ########################################----------------------------------------
 # Zagreb
@@ -44,7 +47,8 @@ test_plot(expr, path="tokio_256.png", dir=dir, width=500, height=1000, update=(F
 expect_silent(ramp <- expand(topos$zagreb, n= 256))
 expr <- expression(plot(ramp))
 
-test_plot(expr, path="zagreb_256.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="zagreb_256.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 
 
@@ -54,7 +58,8 @@ test_plot(expr, path="zagreb_256.png", dir=dir, width=500, height=1000, update=(
 expect_silent(ramp <- expand(topos$havanna2, n= 50))
 expr <- expression(plot(ramp))
 
-test_plot(expr, path="havanna_50.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="havanna_50.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 
 ########################################----------------------------------------
@@ -63,7 +68,8 @@ test_plot(expr, path="havanna_50.png", dir=dir, width=500, height=1000, update=(
 expect_silent(ramp <- expand(topos$jakarta, n= 50))
 expr <- expression(plot(ramp))
 
-test_plot(expr, path="jakarta_50.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="jakarta_50.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 ########################################----------------------------------------
 # Tokio1
@@ -71,7 +77,8 @@ test_plot(expr, path="jakarta_50.png", dir=dir, width=500, height=1000, update=(
 expect_silent(ramp <- expand(topos$tokio1, n= 50))
 expr <- expression(plot(ramp))
 
-test_plot(expr, path="tokio_50.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="tokio_50.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 ########################################----------------------------------------
 # Zagreb
@@ -79,7 +86,8 @@ test_plot(expr, path="tokio_50.png", dir=dir, width=500, height=1000, update=(FA
 expect_silent(ramp <- expand(topos$zagreb, n= 50))
 expr <- expression(plot(ramp))
 
-test_plot(expr, path="zagreb_50.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="zagreb_50.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 ########################################----------------------------------------
 # Ptolemy
@@ -87,7 +95,8 @@ test_plot(expr, path="zagreb_50.png", dir=dir, width=500, height=1000, update=(F
 expect_silent(ramp <- expand(topos$ptolemy, n= 256))
 expr <- expression(plot(ramp))
 
-test_plot(expr, path="ptolemy_256.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="ptolemy_256.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 ################################################################################
 # The same with breaks
@@ -97,7 +106,8 @@ test_plot(expr, path="ptolemy_256.png", dir=dir, width=500, height=1000, update=
 expect_silent(ramp <- expand(topos$havanna2, n= 50))
 expr <- expression(plot(ramp, breaks=TRUE))
 
-test_plot(expr, path="havanna_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="havanna_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 
 ########################################----------------------------------------
@@ -106,7 +116,8 @@ test_plot(expr, path="havanna_50_breaks.png", dir=dir, width=500, height=1000, u
 expect_silent(ramp <- expand(topos$jakarta, n= 50))
 expr <- expression(plot(ramp, breaks=TRUE))
 
-test_plot(expr, path="jakarta_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="jakarta_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 ########################################----------------------------------------
 # Tokio1
@@ -114,7 +125,8 @@ test_plot(expr, path="jakarta_50_breaks.png", dir=dir, width=500, height=1000, u
 expect_silent(ramp <- expand(topos$tokio1, n= 50))
 expr <- expression(plot(ramp, breaks=TRUE))
 
-test_plot(expr, path="tokio_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="tokio_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 ########################################----------------------------------------
 # Zagreb
@@ -122,7 +134,8 @@ test_plot(expr, path="tokio_50_breaks.png", dir=dir, width=500, height=1000, upd
 expect_silent(ramp <- expand(topos$zagreb, n= 50))
 expr <- expression(plot(ramp, breaks=TRUE))
 
-test_plot(expr, path="zagreb_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="zagreb_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 ########################################----------------------------------------
 # Ptolemy-breaks
@@ -130,4 +143,5 @@ test_plot(expr, path="zagreb_50_breaks.png", dir=dir, width=500, height=1000, up
 expect_silent(ramp <- expand(topos$ptolemy, n= 50))
 expr <- expression(plot(ramp, breaks=TRUE))
 
-test_plot(expr, path="ptolemy_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="ptolemy_50_breaks.png", dir=dir, width=500, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)

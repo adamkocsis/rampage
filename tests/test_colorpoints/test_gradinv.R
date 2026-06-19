@@ -17,6 +17,7 @@ source("rampage/R/plotting.R")
 
 # to make tests easier
 dir <- "rampage/tests/results/colorpoints/gradinv"
+dir.create(dir, showWarnings=FALSE)
 
 # create reference images or not?
 globalUpdate <- FALSE
@@ -33,7 +34,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, legend=NULL))
 })
 
-test_plot(expr, path="autoramp.svg", dir=dir, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="autoramp.svg", dir=dir, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 
 ################################################################################
@@ -52,7 +54,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, legend=NULL, col=col, breaks=breaks))
 })
 
-test_plot(expr, path="autoramp.svg", dir=dir, update=FALSE)
+test_result<- test_plot(expr, path="autoramp.svg", dir=dir, update=FALSE)
+if(!is.null(test_result)) expect_true(test_result)
 
 # B2. Missing input / points in the ramp
 # make a rampage object
@@ -72,7 +75,8 @@ expr <- expression({
 	expect_warning(colorpoints(x, y, z, legend=NULL, ramp=ex))
 })
 
-test_plot(expr, path="autoramp.svg", dir=dir, update=FALSE)
+test_result<- test_plot(expr, path="autoramp.svg", dir=dir, update=FALSE)
+if(!is.null(test_result)) expect_true(test_result)
 
 # B3. Symmetric wide
 # A couple of reference plots
@@ -92,7 +96,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, legend=NULL, ramp=ex))
 })
 
-test_plot(expr, path="symmetric_wide.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="symmetric_wide.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 # B4. Symmetric narrower
 # A couple of reference plots
@@ -112,7 +117,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, legend=NULL, ramp=ex))
 })
 
-test_plot(expr, path="symmetric_narrower.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="symmetric_narrower.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 # B4. Symmetric very narrow
 df <- data.frame(
@@ -131,7 +137,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, legend=NULL, ramp=ex))
 })
 
-test_plot(expr, path="symmetric_very_narrow.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="symmetric_very_narrow.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 
 # Asymmetric plots
@@ -153,7 +160,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, legend=NULL, ramp=ex))
 })
 
-test_plot(expr, path="asymmetric_wide.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="asymmetric_wide.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 # C2. Symmetric narrower
 # A couple of reference plots
@@ -173,7 +181,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, legend=NULL, ramp=ex))
 })
 
-test_plot(expr, path="asymmetric_narrower.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="asymmetric_narrower.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 # C3. Symmetric very narrow
 df <- data.frame(
@@ -192,7 +201,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, legend=NULL, ramp=ex))
 })
 
-test_plot(expr, path="asymmetric_very_narrow.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="asymmetric_very_narrow.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 ################################################################################
 # Include the legend
@@ -209,7 +219,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z))
 })
 
-test_plot(expr, path="autoramp_legend.svg", dir=dir, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="autoramp_legend.svg", dir=dir, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 
 ################################################################################
@@ -228,7 +239,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, col=col, breaks=breaks))
 })
 
-test_plot(expr, path="autoramp_legend.svg", dir=dir, update=FALSE)
+test_result<- test_plot(expr, path="autoramp_legend.svg", dir=dir, update=FALSE)
+if(!is.null(test_result)) expect_true(test_result)
 
 # B2. Missing input / points in the ramp
 # make a rampage object
@@ -248,7 +260,8 @@ expr <- expression({
 	expect_warning(colorpoints(x, y, z, ramp=ex))
 })
 
-test_plot(expr, path="autoramp_legend.svg", dir=dir, update=FALSE)
+test_result<- test_plot(expr, path="autoramp_legend.svg", dir=dir, update=FALSE)
+if(!is.null(test_result)) expect_true(test_result)
 
 # B3. Symmetric wide
 # A couple of reference plots
@@ -268,7 +281,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, ramp=ex))
 })
 
-test_plot(expr, path="symmetric_wide_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="symmetric_wide_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 # B4. Symmetric narrower
 # A couple of reference plots
@@ -288,7 +302,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, ramp=ex))
 })
 
-test_plot(expr, path="symmetric_narrower_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="symmetric_narrower_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 # B4. Symmetric very narrow
 df <- data.frame(
@@ -307,7 +322,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, ramp=ex))
 })
 
-test_plot(expr, path="symmetric_very_narrow_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="symmetric_very_narrow_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 
 # Asymmetric plots
@@ -329,7 +345,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, ramp=ex))
 })
 
-test_plot(expr, path="asymmetric_wide_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="asymmetric_wide_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 # C2. Symmetric narrower
 # A couple of reference plots
@@ -349,7 +366,8 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, ramp=ex))
 })
 
-test_plot(expr, path="asymmetric_narrower_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="asymmetric_narrower_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 # C3. Symmetric very narrow
 df <- data.frame(
@@ -368,4 +386,5 @@ expr <- expression({
 	expect_silent(colorpoints(x, y, z, ramp=ex))
 })
 
-test_plot(expr, path="asymmetric_very_narrow_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="asymmetric_very_narrow_legend.svg", dir=dir,  update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)

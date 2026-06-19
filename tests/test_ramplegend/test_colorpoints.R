@@ -43,8 +43,10 @@ expr <- expression({
 
 })
 
-test_plot(expr, path="topleft_cex1.svg", dir=dir, update=(FALSE | globalUpdate))
-test_plot(expr, path="topleft_cex1.png", dir=dir, width=1000, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="topleft_cex1.svg", dir=dir, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
+test_result<- test_plot(expr, path="topleft_cex1.png", dir=dir, width=1000, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 # Topleft cex=0.7
 # write the expression of the plot
@@ -60,8 +62,10 @@ expr <- expression({
 
 })
 
-test_plot(expr, path="topleft_cex0.7.svg", dir=dir, update=(FALSE | globalUpdate))
-test_plot(expr, path="topleft_cex0.7.png", dir=dir, width=1000, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="topleft_cex0.7.svg", dir=dir, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
+test_result<- test_plot(expr, path="topleft_cex0.7.png", dir=dir, width=1000, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 # Topleft cex=0.5
 # write the expression of the plot
@@ -77,8 +81,10 @@ expr <- expression({
 
 })
 
-test_plot(expr, path="topleft_cex0.5.svg", dir=dir, update=(FALSE | globalUpdate))
-test_plot(expr, path="topleft_cex0.5.png", dir=dir, width=1000, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="topleft_cex0.5.svg", dir=dir, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
+test_result<- test_plot(expr, path="topleft_cex0.5.png", dir=dir, width=1000, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 ################################################################################
 # explicitly given x and y
@@ -99,8 +105,10 @@ expr <- expression({
 	abline(v=-3)
 })
 
-test_plot(expr, path="x-3_y2.5_cex1.svg", dir=dir, update=(FALSE | globalUpdate))
-test_plot(expr, path="x-3_y2.5_cex1.png", dir=dir, width=1000, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="x-3_y2.5_cex1.svg", dir=dir, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
+test_result<- test_plot(expr, path="x-3_y2.5_cex1.png", dir=dir, width=1000, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
 
 # x=-3, y=2.5 cex=0.5
 # write the expression of the plot
@@ -118,5 +126,7 @@ expr <- expression({
 	abline(v=-3)
 })
 
-test_plot(expr, path="x-3_y2.5_cex0.5.svg", dir=dir, update=(FALSE | globalUpdate))
-test_plot(expr, path="x-3_y2.5_cex0.5.png", dir=dir, width=1000, height=1000, update=(FALSE | globalUpdate))
+test_result<- test_plot(expr, path="x-3_y2.5_cex0.5.svg", dir=dir, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
+test_result<- test_plot(expr, path="x-3_y2.5_cex0.5.png", dir=dir, width=1000, height=1000, update=(FALSE | globalUpdate))
+if(!is.null(test_result)) expect_true(test_result)
