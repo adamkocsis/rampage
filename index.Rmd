@@ -29,7 +29,9 @@ library(rampage)
 library(terra)
 
 # load data (example on the package GitHub)
-etopo <- rast("https://adamtkocsis.com/rampage/etopo1_Ice_c_gdal_0.1.nc")
+tmp <- paste0(tempdir(), "etopo1.nc")
+download.file("https://adamtkocsis.com/rampage/etopo1_Ice_c_gdal_0.1.nc", tmp)
+etopo <- rast(tmp)
 
 # use a built-in dataset to get color to elevation bindings
 data(topos)
@@ -51,7 +53,9 @@ library(rampage)
 library(terra)
 
 # load data
-etopo <- rast("https://adamtkocsis.com/rampage/etopo1_Ice_c_gdal_0.1.nc")
+tmp <- paste0(tempdir(), "etopo1.nc")
+download.file("https://adamtkocsis.com/rampage/etopo1_Ice_c_gdal_0.1.nc", tmp)
+etopo <- rast(tmp)
 
 # use a built-in dataset to get color to elevation bindings
 data(topos)

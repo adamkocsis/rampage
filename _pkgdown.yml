@@ -60,6 +60,7 @@ reference:
      Color ramp palettes, ramp tiepoint data.frames and expanded calibrated ramps.
   contents:
   - topos
+  - bathymetry
   - paleomap
   - ramps
 - title: Auxilliary functions

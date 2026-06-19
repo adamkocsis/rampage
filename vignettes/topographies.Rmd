@@ -164,7 +164,12 @@ The `terra` extension is an ideal tool to visualize georeference topographic dat
 
 ```{r, echo=TRUE}
 library(terra)
-etopo <- rast("http://adamtkocsis.com/rampage/etopo1_Ice_c_gdal_0.1.nc")
+# download the file
+tmp <- paste0(tempdir(), "etopo1.nc")
+download.file("https://adamtkocsis.com/rampage/etopo1_Ice_c_gdal_0.1.nc", tmp)
+
+# and read it in
+etopo <- rast(tmp)
 etopo
 ```
 
