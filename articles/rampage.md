@@ -29,8 +29,8 @@ gradinv
 #>         rgb(x[, 1L], x[, 2L], x[, 3L], x[, 4L], maxColorValue = 255)
 #>     else rgb(x[, 1L], x[, 2L], x[, 3L], maxColorValue = 255)
 #> }
-#> <bytecode: 0x5e458e77b2c0>
-#> <environment: 0x5e458e788830>
+#> <bytecode: 0x562caafd6a00>
+#> <environment: 0x562caafe3f70>
 ```
 
 ## Histograms

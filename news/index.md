@@ -2,6 +2,8 @@
 
 ## rampage 0.2.1 - 2026-06-19
 
+CRAN release: 2026-06-19
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20762149.svg)](https://doi.org/10.5281/zenodo.20762149)
 
 #### Added

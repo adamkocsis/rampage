@@ -79,6 +79,37 @@ library(fields)
 imagePlot(vals, col=rev(gradinv(100)))
 ```
 
+``` R
+## Loading required package: spam
+
+## Spam version 2.11-4 (2026-05-28) is loaded.
+## Type 'help( Spam)' or 'demo( spam)' for a short introduction 
+## and overview of this package.
+## Help for individual functions is also obtained by adding the
+## suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
+
+## 
+## Attaching package: 'spam'
+
+## The following objects are masked from 'package:base':
+## 
+##     backsolve, forwardsolve
+
+## Loading required package: viridisLite
+
+## Loading required package: RColorBrewer
+
+## 
+## Try help(fields) to get started.
+
+## 
+## Attaching package: 'fields'
+
+## The following object is masked from 'package:terra':
+## 
+##     describe
+```
+
 ![](reference/figures/fields_default.png)
 
 This solution is fine, if the goal of the heatmap is to visualize where

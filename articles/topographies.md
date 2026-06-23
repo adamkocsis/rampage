@@ -206,7 +206,7 @@ etopo
 #> resolution  : 0.1, 0.1  (x, y)
 #> extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
 #> coord. ref. : lon/lat WGS 84
-#> source      : RtmpFObIyUetopo1.nc
+#> source      : RtmpfTZtpKetopo1.nc
 #> varname     : etopo1_Ice_c_gdal_0.1
 #> name        : etopo1_Ice_c_gdal_0.1
 ```
